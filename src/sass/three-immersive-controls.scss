@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+@import "../../node_modules/bulma/bulma.sass";
+@import "./basic-full-window-scene.scss";
+
+button {
+  cursor: pointer;
+  user-select: none;
+  margin: 5px;
+}
+
+a, button, input, select {
+  pointer-events: auto;
+}
+
+#container {
+  user-select: none;
+  position: relative;
+}
+
+#buttonsContainer {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  z-index: 3;
+}
