@@ -12,7 +12,7 @@ import CameraData from './modules/CameraData.js';
 interface ThreeImmersiveControlsOptions {
     initialPosition?: THREE.Vector3;
     lookAt?: THREE.Vector3;
-    floorLimit?: number;
+    floorLimit?: number | false;
     gravity?: boolean;
     moveSpeed?: {
         keyboard: number;
@@ -37,7 +37,7 @@ interface ThreeImmersiveControls {
     vrControls?: VRControls;
     mouseControls?: MouseControls;
     keyboardControls?: KeyboardControls;
-    floorLimit: number;
+    floorLimit: number | false;
     gravity: boolean;
     moveSpeed: {
         keyboard: number;

@@ -162,10 +162,10 @@ class KeyboardControls {
     }
 
     // Enforce floor limit
-    if (move.y !== 0) {
+    if (typeof this.firstPersonControls.floorLimit === 'number' && move.y !== 0) {
       const minPlayerY = this.firstPersonControls.floorLimit + this.firstPersonControls.eyeLevel;
       const moveYResult = this.firstPersonControls.player.position.y + move.y; // The player's y position if the move were applied without being corrected for the floor limit or gravity
-      if (typeof this.firstPersonControls.floorLimit === 'number' && (this.firstPersonControls.gravity === true || moveYResult < minPlayerY)) {
+      if (this.firstPersonControls.gravity === true || moveYResult < minPlayerY) {
         const diff = moveYResult - minPlayerY;
         move.y -= diff;
       }

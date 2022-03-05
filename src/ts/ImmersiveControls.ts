@@ -19,7 +19,7 @@ interface ThreeImmersiveControlsOptions {
   initialPosition?: THREE.Vector3,
   lookAt?: THREE.Vector3,
   // Controls options
-  floorLimit?: number,
+  floorLimit?: number | false,
   gravity?: boolean,
   moveSpeed?: { keyboard: number, vr: number },
   rotateSpeed?: number,
@@ -47,7 +47,7 @@ interface ThreeImmersiveControls {
   mouseControls?: MouseControls,
   keyboardControls?: KeyboardControls,
   // Controls options
-  floorLimit: number,
+  floorLimit: number | false,
   gravity: boolean,
   moveSpeed: { keyboard: number, vr: number },
   rotateSpeed: number,

@@ -38,12 +38,11 @@ controls.update();
   - The player's initial position in the scene. Default is `new THREE.Vector3(0, 1.6, 4)`.
 - `lookAt: THREE.Vector3`
   - Point toward which the player is initially oriented. (Not yet implemented.)
-- `floorLimit: number`
-  - Sets the y position of a floor below which the player cannot pass (simple solution for collision detection instead of navmeshes). Default is `0`.
+- `floorLimit: number | false`
+  - If set to a number, sets the y position of a floor below which the player cannot pass (simple solution for collision detection instead of navmeshes). If set to `false`, no limit to the player's movement along the y-axis is set. Default is `0`.
 - `gravity: boolean`
-  - `true`: The player's movement is restricted to the x- and z-axes, and the y position remains at the `floorLimit`.
+  - `true` (default): The player's movement is restricted to the x- and z-axes, and the y position remains at the `floorLimit`.
   - `false`: The player can also move vertically along the y-axis (flight mode).
-  - Default is `true`.
 - `moveSpeed: { keyboard: number, vr: number }`
   - Speed at which the player moves through the scene when input is received from the keyboard or VR controllers. Default is `{ vr: 2.5, keyboard: 5 }`.
 - `rotateSpeed: number`
