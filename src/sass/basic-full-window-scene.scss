@@ -1,6 +1,7 @@
-body {
-  margin: 0;
+html, body {
   background-color: #000;
+  margin: 0;
+  height: 100%;
   overscroll-behavior: none;
   touch-action: none;
   overflow: hidden;
