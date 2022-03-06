@@ -8,5 +8,5 @@ const app = express();
 const port = 8642;
 app.use(express.static(path.join(thisDir, '../')));
 app.listen(port, () => {
-  console.log(`Try the example at http://localhost:${port}/example`);
+  console.log(`Example running at http://localhost:${port}/example`);
 });
