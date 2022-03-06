@@ -40,28 +40,28 @@ controls.update();
   - Point toward which the player is initially oriented. (Not yet implemented.)
 - `floorLimit: number | false`
   - If set to a number, sets the y position of a floor below which the player cannot pass (simple solution for collision detection instead of navmeshes). If set to `false`, no limit to the player's movement along the y-axis is set. Default is `0`.
-- `gravity: boolean`
+- `gravity: true | false`
   - `true` (default): The player's movement is restricted to the x- and z-axes, and the y position remains at the `floorLimit`.
   - `false`: The player can also move vertically along the y-axis (flight mode).
 - `moveSpeed: { keyboard: number, vr: number }`
   - Speed at which the player moves through the scene when input is received from the keyboard or VR controllers. Default is `{ vr: 2.5, keyboard: 5 }`.
 - `rotateSpeed: number`
   - Speed at which the player is rotated when input is received from the keyboard or VR controllers. Default is `1`.
-- `tumble: boolean`
+- `tumble: true | false`
   - Whether the player can also rotate along the x-axis in addition to the y-axis. Default is `false`.
-- `showControllerModel: boolean`
+- `showControllerModel: true | false`
   - Whether the VR controllers are shown in immersive mode. Default is `true`.
-- `showEnterVRButton: boolean`
+- `showEnterVRButton: true | false`
   - Whether a button is added to the DOM to allow the user to enter immersive mode when this functionality is supported. Default is `true`.
-- `showExitVRButton: boolean`
+- `showExitVRButton: true | false`
   - Whether a button is displayed in the scene which allows the user to exit immersive mode. Default is `true`.
-- `vrControls: boolean`
+- `vrControls: true | false`
   - Whether immersive (VR) controls are activated. Default is `true`.
-- `keyboardControls: boolean`
+- `keyboardControls: true | false`
   - Whether keyboard controls are activated. Default is `true`.
-- `mouseControls: boolean`
+- `mouseControls: true | false`
   - Whether mouse controls are activated. Default is `true`. (Movement with mouse input has not yet been implemented, but object selection with the mouse works.)
-- `showFps: boolean`
+- `showFps: true | false`
   - Whether the `Stats` module is displayed in the DOM and as a mesh in the scene to monitor performance. Default is `false`.
 
 ### Example
