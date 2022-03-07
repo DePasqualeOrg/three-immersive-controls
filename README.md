@@ -2,10 +2,10 @@
 
 This project is still in early development, and contributions and suggestions are welcome.
 
-- Immersive (VR) mode
+- Immersive (VR) functionality
   - Movement and rotation with VR controllers (move with left thumbstick, rotate with right thumbstick)
   - Object selection with VR controllers (`A` button or trigger)
-- Browser window mode
+- Browser window functionality
   - Movement and rotation with keyboard (WASD and arrow keys)
   - Object selection with mouse
 
@@ -73,6 +73,10 @@ npm run example
 ```
 
 Or try it [here](https://unpkg.com/@depasquale/three-immersive-controls/example/index.html).
+
+### Known bugs
+
+- In Three.js r130, a bug was introduced that interferes with the XR Camera's local matrix calculation. This affects the position of the "Exit VR" button and the camera's position after exiting immersive mode. A [fix](https://github.com/mrdoob/three.js/pull/22362) has been approved and will hopefully be merged soon.
 
 ### To-do
 
