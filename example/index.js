@@ -62,3 +62,11 @@ const render = () => {
 };
 
 renderer.setAnimationLoop(render);
+
+document.onreadystatechange = () => {
+  if (document.readyState !== 'complete') {
+    document.querySelector('#loadingIndicator').style.visibility = 'visible';
+  } else {
+    document.querySelector('#loadingIndicator').style.display = 'none';
+  }
+};
