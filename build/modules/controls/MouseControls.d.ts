@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import type ThreeImmersiveControls from '../../ImmersiveControls.js';
 interface MouseControls {
-    firstPersonControls: ThreeImmersiveControls;
+    controls: ThreeImmersiveControls;
     mousePosition: THREE.Vector2;
 }
 declare class MouseControls {

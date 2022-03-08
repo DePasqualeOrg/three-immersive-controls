@@ -13,7 +13,7 @@ const eyeLevel = 1.6;
 class ThreeImmersiveControls {
     constructor(camera, renderer, scene, { initialPosition = new THREE.Vector3(0, eyeLevel, 4), lookAt = new THREE.Vector3(initialPosition.x, initialPosition.y, initialPosition.z - 10000), 
     // Controls settings
-    floorLimit = 0, gravity = true, moveSpeed = { vr: 2.5, keyboard: 5 }, rotateSpeed = 1, tumble = false, 
+    floor = 0, gravity = true, moveSpeed = { vr: 2.5, keyboard: 5 }, rotateSpeed = 1, tumble = false, 
     // Display options
     showControllerModel = true, showEnterVRButton = true, showExitVRButton = true, 
     // Controls
@@ -30,7 +30,7 @@ class ThreeImmersiveControls {
         this.player.add(this.camera);
         this.camera.position.set(0, 0, 0);
         // Settings used by VR, keyboard and mouse controls
-        this.floorLimit = floorLimit;
+        this.floor = floor;
         this.gravity = gravity;
         this.moveSpeed = moveSpeed;
         this.rotateSpeed = rotateSpeed;

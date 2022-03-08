@@ -264,10 +264,10 @@ class VRControls {
             this.leftThumbstickMomentum.val = thumbstickY; // !! Should actually use highest thumbstickY from previous ___ ms
             const move = new THREE.Vector3(movementValX, 0, movementValZ).applyQuaternion(this.controls.cameraData.worldRotation);
             // Enforce floor limit
-            if (typeof this.controls.floorLimit === 'number' && move.y !== 0) {
+            if (typeof this.controls.floor === 'number' && move.y !== 0) {
                 // Maintain standing height when moving
                 // !! If the headset height diff changes significantly over the session (e.g. when standing up/sitting down), the initialCameraHeight needs to be transitioned. Check here and initiate tween if the difference exceeds some threshold
-                const minPlayerY = this.controls.floorLimit + this.controls.eyeLevel - this.initialCameraHeight;
+                const minPlayerY = this.controls.floor + this.controls.eyeLevel - this.initialCameraHeight;
                 const moveYResult = this.controls.player.position.y + move.y; // The player's y position if the move were applied without being corrected for the floor limit or gravity
                 if (this.controls.gravity === true || moveYResult < minPlayerY) {
                     const diff = moveYResult - minPlayerY;

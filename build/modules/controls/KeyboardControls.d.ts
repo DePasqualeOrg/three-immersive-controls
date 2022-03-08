@@ -1,7 +1,7 @@
 /*! Copyright 2022, Anthony DePasquale, anthony@depasquale.org */
 import type ImmersiveControls from '../../ImmersiveControls.js';
 interface KeyboardControls {
-    firstPersonControls: ImmersiveControls;
+    controls: ImmersiveControls;
     keysPressed: Array<string>;
     keysToIgnore: Array<string>;
     activeKeys: Array<string>;

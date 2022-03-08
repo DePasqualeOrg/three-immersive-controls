@@ -19,7 +19,7 @@ interface ThreeImmersiveControlsOptions {
   initialPosition?: THREE.Vector3,
   lookAt?: THREE.Vector3,
   // Controls options
-  floorLimit?: number | false,
+  floor?: number | false,
   gravity?: boolean,
   moveSpeed?: { keyboard: number, vr: number },
   rotateSpeed?: number,
@@ -47,7 +47,7 @@ interface ThreeImmersiveControls {
   mouseControls?: MouseControls,
   keyboardControls?: KeyboardControls,
   // Controls options
-  floorLimit: number | false,
+  floor: number | false,
   gravity: boolean,
   moveSpeed: { keyboard: number, vr: number },
   rotateSpeed: number,
@@ -77,7 +77,7 @@ class ThreeImmersiveControls {
       initialPosition = new THREE.Vector3(0, eyeLevel, 4),
       lookAt = new THREE.Vector3(initialPosition.x, initialPosition.y, initialPosition.z - 10000),
       // Controls settings
-      floorLimit = 0,
+      floor = 0,
       gravity = true,
       moveSpeed = { vr: 2.5, keyboard: 5 },
       rotateSpeed = 1,
@@ -106,7 +106,7 @@ class ThreeImmersiveControls {
     this.camera.position.set(0, 0, 0);
 
     // Settings used by VR, keyboard and mouse controls
-    this.floorLimit = floorLimit;
+    this.floor = floor;
     this.gravity = gravity;
     this.moveSpeed = moveSpeed;
     this.rotateSpeed = rotateSpeed;

@@ -4,7 +4,7 @@ const xAxis = new THREE.Vector3(1, 0, 0);
 const yAxis = new THREE.Vector3(0, 1, 0);
 class KeyboardControls {
     constructor(controls) {
-        this.firstPersonControls = controls;
+        this.controls = controls;
         this.keysPressed = [];
         this.keysToIgnore = [];
         this.activeKeys = [];
@@ -75,8 +75,8 @@ class KeyboardControls {
         vector.applyAxisAngle(xAxis, this.xRotation);
         vector.applyAxisAngle(yAxis, this.yRotation);
         vector = vector.negate(); // !! This is kind of a hack. Need to get camera and player looking at same point (currently inverse)
-        const lookAtPoint = new THREE.Vector3().addVectors(this.firstPersonControls.player.position, vector);
-        this.firstPersonControls.player.lookAt(lookAtPoint);
+        const lookAtPoint = new THREE.Vector3().addVectors(this.controls.player.position, vector);
+        this.controls.player.lookAt(lookAtPoint);
     }
     rotateLeft(rotationAmount) {
         this.yRotation += rotationAmount;
@@ -95,41 +95,41 @@ class KeyboardControls {
         }
     }
     update() {
-        const moveSpeedPerMillisecond = this.firstPersonControls.moveSpeed.keyboard / 1000;
-        const rotateSpeedPerMillisecond = this.firstPersonControls.rotateSpeed / 1000;
-        const movementAmount = moveSpeedPerMillisecond * this.firstPersonControls.millisecondsSinceLastFrame;
-        const rotationAmount = rotateSpeedPerMillisecond * this.firstPersonControls.millisecondsSinceLastFrame;
+        const moveSpeedPerMillisecond = this.controls.moveSpeed.keyboard / 1000;
+        const rotateSpeedPerMillisecond = this.controls.rotateSpeed / 1000;
+        const movementAmount = moveSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame;
+        const rotationAmount = rotateSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame;
         // !! Add inertia
-        // const movementAmount = moveSpeedPerMillisecond * this.firstPersonControls.millisecondsSinceLastFrame * inertiaCoefficient;
-        // const rotationAmount = rotateSpeedPerMillisecond * this.firstPersonControls.millisecondsSinceLastFrame * inertiaCoefficient;
+        // const movementAmount = moveSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * inertiaCoefficient;
+        // const rotationAmount = rotateSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * inertiaCoefficient;
         const move = new THREE.Vector3(0, 0, 0);
         // Movement
         if (this.activeKeys.includes('KeyW')) {
             // Forward
-            move.add(new THREE.Vector3(0, 0, -movementAmount).applyQuaternion(this.firstPersonControls.cameraData.worldRotation)); // !! Use this.firstPersonControls.player rotation instead?
+            move.add(new THREE.Vector3(0, 0, -movementAmount).applyQuaternion(this.controls.cameraData.worldRotation)); // !! Use this.controls.player rotation instead?
         }
         if (this.activeKeys.includes('KeyS')) {
             // Backward
-            move.add(new THREE.Vector3(0, 0, movementAmount).applyQuaternion(this.firstPersonControls.cameraData.worldRotation));
+            move.add(new THREE.Vector3(0, 0, movementAmount).applyQuaternion(this.controls.cameraData.worldRotation));
         }
         if (this.activeKeys.includes('KeyA')) {
             // Left
-            move.add(new THREE.Vector3(-movementAmount, 0, 0).applyQuaternion(this.firstPersonControls.cameraData.worldRotation));
+            move.add(new THREE.Vector3(-movementAmount, 0, 0).applyQuaternion(this.controls.cameraData.worldRotation));
         }
         if (this.activeKeys.includes('KeyD')) {
             // Right
-            move.add(new THREE.Vector3(movementAmount, 0, 0).applyQuaternion(this.firstPersonControls.cameraData.worldRotation));
+            move.add(new THREE.Vector3(movementAmount, 0, 0).applyQuaternion(this.controls.cameraData.worldRotation));
         }
         // Enforce floor limit
-        if (typeof this.firstPersonControls.floorLimit === 'number' && move.y !== 0) {
-            const minPlayerY = this.firstPersonControls.floorLimit + this.firstPersonControls.eyeLevel;
-            const moveYResult = this.firstPersonControls.player.position.y + move.y; // The player's y position if the move were applied without being corrected for the floor limit or gravity
-            if (this.firstPersonControls.gravity === true || moveYResult < minPlayerY) {
+        if (typeof this.controls.floor === 'number' && move.y !== 0) {
+            const minPlayerY = this.controls.floor + this.controls.eyeLevel;
+            const moveYResult = this.controls.player.position.y + move.y; // The player's y position if the move were applied without being corrected for the floor limit or gravity
+            if (this.controls.gravity === true || moveYResult < minPlayerY) {
                 const diff = moveYResult - minPlayerY;
                 move.y -= diff;
             }
         }
-        this.firstPersonControls.player.position.add(move);
+        this.controls.player.position.add(move);
         // Rotation
         let needToRotate = false;
         if (this.activeKeys.includes('ArrowLeft')) {

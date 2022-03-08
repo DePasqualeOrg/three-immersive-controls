@@ -12,7 +12,7 @@ import CameraData from './modules/CameraData.js';
 interface ThreeImmersiveControlsOptions {
     initialPosition?: THREE.Vector3;
     lookAt?: THREE.Vector3;
-    floorLimit?: number | false;
+    floor?: number | false;
     gravity?: boolean;
     moveSpeed?: {
         keyboard: number;
@@ -37,7 +37,7 @@ interface ThreeImmersiveControls {
     vrControls?: VRControls;
     mouseControls?: MouseControls;
     keyboardControls?: KeyboardControls;
-    floorLimit: number | false;
+    floor: number | false;
     gravity: boolean;
     moveSpeed: {
         keyboard: number;
@@ -56,7 +56,7 @@ interface ThreeImmersiveControls {
     statsMesh?: StatsMesh;
 }
 declare class ThreeImmersiveControls {
-    constructor(camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer, scene: THREE.Scene, { initialPosition, lookAt, floorLimit, gravity, moveSpeed, rotateSpeed, tumble, showControllerModel, showEnterVRButton, showExitVRButton, vrControls, keyboardControls, mouseControls, showFps, }?: ThreeImmersiveControlsOptions);
+    constructor(camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer, scene: THREE.Scene, { initialPosition, lookAt, floor, gravity, moveSpeed, rotateSpeed, tumble, showControllerModel, showEnterVRButton, showExitVRButton, vrControls, keyboardControls, mouseControls, showFps, }?: ThreeImmersiveControlsOptions);
     update(): void;
 }
 declare global {
