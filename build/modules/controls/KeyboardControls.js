@@ -1,5 +1,7 @@
 /*! Copyright 2022, Anthony DePasquale, anthony@depasquale.org */
 import * as THREE from 'three';
+import * as TWEEN from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
+const inertiaTweenDuration = 350;
 const xAxis = new THREE.Vector3(1, 0, 0);
 const yAxis = new THREE.Vector3(0, 1, 0);
 class KeyboardControls {
@@ -95,30 +97,66 @@ class KeyboardControls {
         }
     }
     update() {
+        TWEEN.update();
         const moveSpeedPerMillisecond = this.controls.moveSpeed.keyboard / 1000;
         const rotateSpeedPerMillisecond = this.controls.rotateSpeed / 1000;
-        const movementAmount = moveSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame;
-        const rotationAmount = rotateSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame;
-        // !! Add inertia
-        // const movementAmount = moveSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * inertiaCoefficient;
-        // const rotationAmount = rotateSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * inertiaCoefficient;
+        let movementKeyActive = false;
+        if (this.activeKeys.includes('KeyW') || this.activeKeys.includes('KeyS') || this.activeKeys.includes('KeyA') || this.activeKeys.includes('KeyD')) {
+            movementKeyActive = true;
+        }
+        if (this.lastFrameMovementWas0 === true && movementKeyActive === true) {
+            // Start tween
+            this.movementTween = new TWEEN.Tween(this.movementInertia)
+                .to({ val: 0 }, inertiaTweenDuration)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                // .onUpdate(() => {})
+                .start();
+        }
+        const movementInertiaCoefficient = 1 - this.movementInertia.val;
+        const movementAmount = moveSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * movementInertiaCoefficient;
         const move = new THREE.Vector3(0, 0, 0);
+        let rotationKeyActive = false;
+        if (this.activeKeys.includes('ArrowUp') || this.activeKeys.includes('ArrowDown') || this.activeKeys.includes('ArrowRight') || this.activeKeys.includes('ArrowLeft')) {
+            rotationKeyActive = true;
+        }
+        if (this.lastFrameRotationWas0 === true && rotationKeyActive === true) {
+            // Start tween
+            this.rotationTween = new TWEEN.Tween(this.rotationInertia)
+                .to({ val: 0 }, inertiaTweenDuration)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                // .onUpdate(() => {})
+                .start();
+        }
+        const rotationInertiaCoefficient = 1 - this.rotationInertia.val;
+        const rotationAmount = rotateSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * rotationInertiaCoefficient;
         // Movement
+        let movementFlag = true; // Indicates whether to set `this.lastFrameMovementWas0` for next frame
         if (this.activeKeys.includes('KeyW')) {
             // Forward
             move.add(new THREE.Vector3(0, 0, -movementAmount).applyQuaternion(this.controls.cameraData.worldRotation)); // !! Use this.controls.player rotation instead?
+            movementFlag = false;
         }
-        if (this.activeKeys.includes('KeyS')) {
+        else if (this.activeKeys.includes('KeyS')) {
             // Backward
             move.add(new THREE.Vector3(0, 0, movementAmount).applyQuaternion(this.controls.cameraData.worldRotation));
+            movementFlag = false;
         }
         if (this.activeKeys.includes('KeyA')) {
             // Left
             move.add(new THREE.Vector3(-movementAmount, 0, 0).applyQuaternion(this.controls.cameraData.worldRotation));
+            movementFlag = false;
         }
-        if (this.activeKeys.includes('KeyD')) {
+        else if (this.activeKeys.includes('KeyD')) {
             // Right
             move.add(new THREE.Vector3(movementAmount, 0, 0).applyQuaternion(this.controls.cameraData.worldRotation));
+            movementFlag = false;
+        }
+        if (movementFlag === true) {
+            this.lastFrameMovementWas0 = true;
+            this.movementInertia.val = 1;
+        }
+        else {
+            this.lastFrameMovementWas0 = false;
         }
         // Enforce floor limit
         if (typeof this.controls.floor === 'number' && move.y !== 0) {
@@ -136,7 +174,7 @@ class KeyboardControls {
             this.rotateLeft(rotationAmount);
             needToRotate = true;
         }
-        if (this.activeKeys.includes('ArrowRight')) {
+        else if (this.activeKeys.includes('ArrowRight')) {
             this.rotateRight(rotationAmount);
             needToRotate = true;
         }
@@ -144,12 +182,17 @@ class KeyboardControls {
             this.rotateUp(rotationAmount);
             needToRotate = true;
         }
-        if (this.activeKeys.includes('ArrowDown')) {
+        else if (this.activeKeys.includes('ArrowDown')) {
             this.rotateDown(rotationAmount);
             needToRotate = true;
         }
         if (needToRotate === true) {
             this.rotate();
+            this.lastFrameRotationWas0 = false;
+        }
+        else {
+            this.lastFrameRotationWas0 = true;
+            this.rotationInertia.val = 1;
         }
     }
 }

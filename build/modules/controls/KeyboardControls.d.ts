@@ -1,4 +1,5 @@
 /*! Copyright 2022, Anthony DePasquale, anthony@depasquale.org */
+import * as TWEEN from '@tweenjs/tween.js';
 import type ImmersiveControls from '../../ImmersiveControls.js';
 interface KeyboardControls {
     controls: ImmersiveControls;
@@ -13,6 +14,12 @@ interface KeyboardControls {
     rotationInertia: {
         val: number;
     };
+    movementTween?: TWEEN.Tween<{
+        val: number;
+    }>;
+    rotationTween?: TWEEN.Tween<{
+        val: number;
+    }>;
     veticalRotationThreshold: number;
     xRotation: number;
     yRotation: number;
