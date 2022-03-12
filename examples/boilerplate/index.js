@@ -1,17 +1,19 @@
 import * as THREE from 'three';
-import ImmersiveControls from '../build/ImmersiveControls.js';
+import ImmersiveControls from '@depasquale/three-immersive-controls';
 
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 1000);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.shadowMap.enabled = true;
+// renderer.shadowMap.enabled = true;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
 
-const controls = new ImmersiveControls(camera, renderer, scene, { /* options */ });
+const controls = new ImmersiveControls(camera, renderer, scene, {
+  showFps: true,
+});
 
 const container = document.createElement('container');
 container.id = 'container';
@@ -24,12 +26,10 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 }, false);
 
-//
-
 // Lights
-const ambientLight = new THREE.AmbientLight(0xffffff, 1);
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
-directionalLight.position.set(0, 1, -1);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
+directionalLight.position.set(0, 2, -2);
 scene.add(ambientLight, directionalLight);
 
 // Floor
@@ -53,16 +53,15 @@ scene.add(icosahedron);
 
 const render = () => {
   controls.update();
-
   const time = Date.now();
   icosahedron.rotation.x = time * 0.0002;
   icosahedron.rotation.y = time * 0.0003;
-
   renderer.render(scene, camera);
 };
 
 renderer.setAnimationLoop(render);
 
+// Show indicator while loading packages with import map
 document.onreadystatechange = () => {
   if (document.readyState !== 'complete') {
     document.querySelector('#loadingIndicator').style.visibility = 'visible';

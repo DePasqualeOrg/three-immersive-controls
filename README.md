@@ -63,15 +63,15 @@ controls.update();
 - `showFps: true | false`
   - Display the `Stats` indicator in the DOM and in front of the player in the scene to monitor performance. Default is `false`.
 
-### Example
+### Examples
 
-A full example is provided in the `example` directory. To try it locally in your browser, run:
+Examples are provided in the `examples` directory. To try them locally in your browser, run:
 
 ```
-npm run example
+npm run examples
 ```
 
-Or try it [here](https://unpkg.com/@depasquale/three-immersive-controls/example/index.html).
+Or try them [here](https://unpkg.com/@depasquale/three-immersive-controls/examples/index.html).
 
 ### Known bugs
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Three.js Immersive Controls example: Interactive Objects</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link type="text/css" rel="stylesheet" href="../../build/css/three-immersive-controls.css">
+  <link type="text/css" rel="stylesheet" href="../examples.css">
+</head>
+
+<body>
+  <div id="indicators">
+    <div class="indicator">
+      <a href="https://github.com/DePasqualeOrg/three-immersive-controls">Three.js Immersive Controls</a> example. Move with left thumbstick in VR or W, A, S, and D keys. Rotate with right thumbstick in VR or arrow keys.
+    </div>
+    <div id="loadingIndicator" class="indicator">
+      Loading...
+    </div>
+  </div>
+  <script>
+    window.onerror = () => {
+      document.querySelector('#loadingIndicator').style.color = 'red';
+      document.querySelector('#loadingIndicator').innerHTML = 'Error';
+    };
+  </script>
+  <script async src="https://unpkg.com/es-module-shims/dist/es-module-shims.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/gh/DePasqualeOrg/three.js@r138-patch/build/three.module.js",
+        "three/": "https://cdn.jsdelivr.net/gh/DePasqualeOrg/three.js@r138-patch/",
+        "@depasquale/three-wizard": "https://unpkg.com/@depasquale/three-wizard",
+        "@depasquale/three-immersive-controls": "../../build/ImmersiveControls.js",
+        "@depasquale/three-stats-mesh": "https://unpkg.com/@depasquale/three-stats-mesh",
+        "@tweenjs/tween.js": "https://unpkg.com/@tweenjs/tween.js/dist/tween.esm.js"
+      }
+    }
+  </script>
+  <script type="module" src="./index.js"></script>
+</body>
+
+</html>

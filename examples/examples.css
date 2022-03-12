@@ -1,0 +1,33 @@
+body,
+html {
+  background-color: black;
+  color: white;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  margin: 0;
+}
+
+a {
+  color: #FFFF66;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFFF66;
+  text-decoration: underline;
+}
+
+#indicators {
+  user-select: none;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  pointer-events: auto;
+  z-index: 1;
+  padding: 10px;
+}
+
+.indicator {
+  margin-bottom: 10px;
+}
