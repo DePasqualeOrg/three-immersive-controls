@@ -5,7 +5,7 @@ Copyright 2022, Anthony DePasquale (anthony@depasquale.org)
 import * as THREE from 'three';
 import * as TWEEN from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
 import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory.js';
-import ImmersiveUIButton from '../ImmersiveUIButton.js';
+import ImmersiveButton from '../ImmersiveButton.js';
 const xAxis = new THREE.Vector3(1, 0, 0);
 const yAxis = new THREE.Vector3(0, 1, 0);
 class VRControls {
@@ -68,7 +68,7 @@ class VRControls {
         this.repositionUserButtons();
         this.controls.player.add(this.userButtons);
         if (this.showExitVRButton === true) {
-            const exitVRButton = new ImmersiveUIButton({
+            const exitVRButton = new ImmersiveButton({
                 displayText: 'Exit VR', type: 'exitVRButton', meshName: 'Exit VR button', selectable: true, showActive: false, interaction: this.controls.interaction,
             });
             exitVRButton.created.then(() => {

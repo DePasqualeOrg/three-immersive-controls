@@ -1,7 +1,7 @@
 import { createOverlay } from './overlays.js';
 import Interaction from './Interaction.js';
 
-interface ImmersiveUIButtonOptions {
+interface ImmersiveButtonOptions {
   displayText: string,
   type: string,
   meshName: string,
@@ -10,7 +10,7 @@ interface ImmersiveUIButtonOptions {
   interaction: Interaction,
 }
 
-interface ImmersiveUIButton {
+interface ImmersiveButton {
   displayText: string,
   type: string,
   meshName: string,
@@ -23,10 +23,10 @@ interface ImmersiveUIButton {
   mesh: THREE.Mesh,
 }
 
-class ImmersiveUIButton {
+class ImmersiveButton {
   constructor({
     displayText, type, meshName, selectable = true, showActive = false, interaction,
-  }: ImmersiveUIButtonOptions) {
+  }: ImmersiveButtonOptions) {
     this.displayText = displayText;
     this.type = type;
     this.meshName = meshName;
@@ -53,4 +53,4 @@ class ImmersiveUIButton {
   }
 }
 
-export default ImmersiveUIButton;
+export default ImmersiveButton;

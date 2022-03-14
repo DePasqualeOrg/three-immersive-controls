@@ -1,5 +1,5 @@
 import { createOverlay } from './overlays.js';
-class ImmersiveUIButton {
+class ImmersiveButton {
     constructor({ displayText, type, meshName, selectable = true, showActive = false, interaction, }) {
         this.displayText = displayText;
         this.type = type;
@@ -27,4 +27,4 @@ class ImmersiveUIButton {
         this.mesh = button;
     }
 }
-export default ImmersiveUIButton;
+export default ImmersiveButton;

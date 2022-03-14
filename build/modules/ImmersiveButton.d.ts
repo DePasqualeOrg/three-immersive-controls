@@ -1,5 +1,5 @@
 import Interaction from './Interaction.js';
-interface ImmersiveUIButtonOptions {
+interface ImmersiveButtonOptions {
     displayText: string;
     type: string;
     meshName: string;
@@ -7,7 +7,7 @@ interface ImmersiveUIButtonOptions {
     showActive: boolean;
     interaction: Interaction;
 }
-interface ImmersiveUIButton {
+interface ImmersiveButton {
     displayText: string;
     type: string;
     meshName: string;
@@ -19,8 +19,8 @@ interface ImmersiveUIButton {
     height: number;
     mesh: THREE.Mesh;
 }
-declare class ImmersiveUIButton {
-    constructor({ displayText, type, meshName, selectable, showActive, interaction, }: ImmersiveUIButtonOptions);
+declare class ImmersiveButton {
+    constructor({ displayText, type, meshName, selectable, showActive, interaction, }: ImmersiveButtonOptions);
     create(): Promise<void>;
 }
-export default ImmersiveUIButton;
+export default ImmersiveButton;

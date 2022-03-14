@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import * as WebXR from 'webxr';
 import * as TWEEN from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
 import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory.js';
-import ImmersiveUIButton from '../ImmersiveUIButton.js';
+import ImmersiveButton from '../ImmersiveButton.js';
 import type ThreeImmersiveControls from '../../ImmersiveControls.js';
 
 interface Controller extends THREE.Group {
@@ -138,7 +138,7 @@ class VRControls {
     this.controls.player.add(this.userButtons);
 
     if (this.showExitVRButton === true) {
-      const exitVRButton = new ImmersiveUIButton({
+      const exitVRButton = new ImmersiveButton({
         displayText: 'Exit VR', type: 'exitVRButton', meshName: 'Exit VR button', selectable: true, showActive: false, interaction: this.controls.interaction,
       });
       exitVRButton.created.then(() => {
