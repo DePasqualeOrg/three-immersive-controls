@@ -402,16 +402,6 @@ class VRControls {
         const rotatedDiff = diff.applyEuler(new THREE.Euler(xRotationAmount || 0, -yRotationAmount, 0));
         this.controls.player.position.sub(rotatedDiff);
       }
-      // if (thumbstickY !== 0 && this.controls.tumble === true) {
-      //   // Up/down rotation
-      //   let xRotationAmount = rotateSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * thumbstickY * inertiaCoefficient;
-      //   this.rightThumbstickXMomentum = thumbstickY; // !! Should actually use highest thumbStickY from previous ___ ms
-      //   let diff = new THREE.Vector3().subVectors(this.controls.cameraData.worldPosition, this.controls.player.position);
-      //   this.controls.player.position.add(diff);
-      //   this.controls.player.rotateOnAxis(xAxis, xRotationAmount);
-      //   let rotatedDiff = diff.applyAxisAngle(xAxis, xRotationAmount);
-      //   this.controls.player.position.sub(rotatedDiff);
-      // }
       // End
       if (thumbstickX !== 0 || thumbstickY !== 0) {
         this.lastFrameRightThumbstickWas0 = false;
