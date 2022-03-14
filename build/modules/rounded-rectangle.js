@@ -1,5 +1,8 @@
 "use strict";
-// https://newfivefour.com/javascript-canvas-rounded-rectangle.html
+/*!
+roundedRectangle by Aaron Newell
+https://newfivefour.com/javascript-canvas-rounded-rectangle.html
+*/
 CanvasRenderingContext2D.prototype.roundedRectangle = function (x, y, width, height, rounded) {
     // const radiansInCircle = 2 * Math.PI;
     const halfRadians = (2 * Math.PI) / 2;
