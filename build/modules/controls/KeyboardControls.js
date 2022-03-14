@@ -130,7 +130,7 @@ class KeyboardControls {
         const rotationInertiaCoefficient = 1 - this.rotationInertia.val;
         const rotationAmount = rotateSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * rotationInertiaCoefficient;
         // Movement
-        let movementFlag = true; // Indicates whether to set `this.lastFrameMovementWas0` for next frame
+        let movementFlag = true;
         if (this.activeKeys.includes('KeyW')) {
             // Forward
             move.add(new THREE.Vector3(0, 0, -movementAmount).applyQuaternion(this.controls.cameraData.worldRotation)); // !! Use this.controls.player rotation instead?
