@@ -7,7 +7,7 @@ import StatsMesh from '@depasquale/three-stats-mesh';
 import VRControls from './modules/controls/VRControls.js';
 import KeyboardControls from './modules/controls/KeyboardControls.js';
 import MouseControls from './modules/controls/MouseControls.js';
-import ObjectInteractionManager from './modules/ObjectInteractionManager.js';
+import Interaction from './modules/Interaction.js';
 import CameraData from './modules/CameraData.js';
 interface ThreeImmersiveControlsOptions {
     initialPosition?: THREE.Vector3;
@@ -48,7 +48,7 @@ interface ThreeImmersiveControls {
     eyeLevel: number;
     lastUpdate: number;
     millisecondsSinceLastFrame: number;
-    objectInteractionManager: ObjectInteractionManager;
+    interaction: Interaction;
     tempMatrix: THREE.Matrix4;
     raycaster: THREE.Raycaster;
     cameraData: CameraData;

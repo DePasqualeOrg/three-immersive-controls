@@ -1,20 +1,20 @@
 import { createOverlay } from './overlays.js';
 class ImmersiveUIButton {
-    constructor({ displayText, type, meshName, selectable = true, showActive = false, objectInteractionManager, }) {
+    constructor({ displayText, type, meshName, selectable = true, showActive = false, interaction, }) {
         this.displayText = displayText;
         this.type = type;
         this.meshName = meshName;
         this.selectable = selectable;
         this.showActive = showActive;
         this.created = this.create();
-        this.objectInteractionManager = objectInteractionManager;
+        this.interaction = interaction;
     }
     async create() {
         const button = await createOverlay({ text: this.displayText, selectable: this.selectable, showActive: this.showActive });
         button.name = this.meshName;
         button.userData.type = this.type;
         if (this.selectable === true) {
-            this.objectInteractionManager.selectableObjects.push(button);
+            this.interaction.selectableObjects.push(button);
         }
         button.geometry.computeBoundingBox();
         if (button.geometry.boundingBox) {

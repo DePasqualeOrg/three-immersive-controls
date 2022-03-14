@@ -139,19 +139,19 @@ class VRControls {
 
     if (this.showExitVRButton === true) {
       const exitVRButton = new ImmersiveUIButton({
-        displayText: 'Exit VR', type: 'exitVRButton', meshName: 'Exit VR button', selectable: true, showActive: false, objectInteractionManager: this.controls.objectInteractionManager,
+        displayText: 'Exit VR', type: 'exitVRButton', meshName: 'Exit VR button', selectable: true, showActive: false, interaction: this.controls.interaction,
       });
       exitVRButton.created.then(() => {
         this.userButtons.add(exitVRButton.mesh);
       });
-      if (!('exitVRButton' in this.controls.objectInteractionManager.selectedObjectHandlers)) {
-        this.controls.objectInteractionManager.selectedObjectHandlers.exitVRButton = this.exitVR.bind(this);
+      if (!('exitVRButton' in this.controls.interaction.selectedObjectHandlers)) {
+        this.controls.interaction.selectedObjectHandlers.exitVRButton = this.exitVR.bind(this);
       } else {
         console.error('Attempting to set selection handler for object of type `exitVRButton`, but a handler for this object type has already been set.');
       }
-      if (!('exitVRButton' in this.controls.objectInteractionManager.intersectedObjectHandlers)) {
+      if (!('exitVRButton' in this.controls.interaction.intersectedObjectHandlers)) {
         // Don't reposition user buttons while they're intersected
-        this.controls.objectInteractionManager.intersectedObjectHandlers.exitVRButton = this.resetUserButtonRepositionTimer.bind(this);
+        this.controls.interaction.intersectedObjectHandlers.exitVRButton = this.resetUserButtonRepositionTimer.bind(this);
       } else {
         console.error('Attempting to set selection handler for object of type `exitVRButton`, but a handler for this object type has already been set.');
       }
@@ -431,13 +431,13 @@ class VRControls {
     // }
     const controllerLine = controller.getObjectByName('line');
     if (controllerLine) {
-      const intersections = this.getControllerIntersections(controller, this.controls.objectInteractionManager.selectableObjects);
+      const intersections = this.getControllerIntersections(controller, this.controls.interaction.selectableObjects);
 
       if (intersections.length > 0) {
         const intersection = intersections[0];
         const object = intersection.object;
         if (object instanceof THREE.Mesh) {
-          this.controls.objectInteractionManager.handleIntersectedObject(object);
+          this.controls.interaction.handleIntersectedObject(object);
         }
         controllerLine.scale.z = intersection.distance;
         /*
@@ -459,7 +459,7 @@ class VRControls {
           buttonSide = this.buttons.left;
         }
         if ((buttonSide?.a.buttonUp === true || buttonSide?.trigger.buttonUp === true) && object.visible === true) {
-          this.controls.objectInteractionManager.handleSelectedObject(object);
+          this.controls.interaction.handleSelectedObject(object);
         }
       } else {
         controllerLine.scale.z = 5;

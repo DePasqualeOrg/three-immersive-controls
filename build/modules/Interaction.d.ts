@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-interface ObjectInteractionManager {
+interface Interaction {
     intersectedObjects: Array<THREE.Object3D>;
     selectableObjects: Array<THREE.Object3D>;
     intersectedObjectEmissiveVal: number;
@@ -10,11 +10,11 @@ interface ObjectInteractionManager {
         [key: string]: Function;
     };
 }
-declare class ObjectInteractionManager {
+declare class Interaction {
     constructor();
     handleSelectedObject(object: THREE.Object3D): void;
     cleanIntersected(): void;
     static handleButtonMaterialMaps(object: THREE.Mesh, intersected?: boolean): void;
     handleIntersectedObject(object: THREE.Mesh): void;
 }
-export default ObjectInteractionManager;
+export default Interaction;

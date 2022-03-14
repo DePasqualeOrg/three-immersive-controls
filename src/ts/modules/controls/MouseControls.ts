@@ -23,8 +23,8 @@ class MouseControls {
     // !! Still need to account for case in which a visible element is behind a non-visible element
     // Object selection with mouse
     this.controls.renderer.domElement.addEventListener('click', () => {
-      if (this.controls.objectInteractionManager.intersectedObjects.length > 0 && this.controls.objectInteractionManager.intersectedObjects[0].visible === true) {
-        this.controls.objectInteractionManager.handleSelectedObject(this.controls.objectInteractionManager.intersectedObjects[0]);
+      if (this.controls.interaction.intersectedObjects.length > 0 && this.controls.interaction.intersectedObjects[0].visible === true) {
+        this.controls.interaction.handleSelectedObject(this.controls.interaction.intersectedObjects[0]);
       }
     });
   }
@@ -33,9 +33,9 @@ class MouseControls {
     // Don't get intersctions from camera when in VR
     if (!this.controls.vrControls?.inVr) {
       this.controls.raycaster.setFromCamera(this.mousePosition, this.controls.camera);
-      const intersections = this.controls.raycaster.intersectObjects(this.controls.objectInteractionManager.selectableObjects);
+      const intersections = this.controls.raycaster.intersectObjects(this.controls.interaction.selectableObjects);
       if (intersections.length > 0 && intersections[0].object.visible === true && intersections[0].object instanceof THREE.Mesh) {
-        this.controls.objectInteractionManager.handleIntersectedObject(intersections[0].object);
+        this.controls.interaction.handleIntersectedObject(intersections[0].object);
       }
     }
   }

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-class ObjectInteractionManager {
+class Interaction {
     constructor() {
         // Object interaction
         this.intersectedObjects = [];
@@ -26,7 +26,7 @@ class ObjectInteractionManager {
             const object = this.intersectedObjects.pop();
             if (object instanceof THREE.Mesh) {
                 object.material.emissive?.setScalar(0);
-                ObjectInteractionManager.handleButtonMaterialMaps(object, false);
+                Interaction.handleButtonMaterialMaps(object, false);
             }
         }
     }
@@ -42,7 +42,7 @@ class ObjectInteractionManager {
     }
     handleIntersectedObject(object) {
         this.intersectedObjects.push(object);
-        ObjectInteractionManager.handleButtonMaterialMaps(object, true);
+        Interaction.handleButtonMaterialMaps(object, true);
         if (object.material instanceof THREE.MeshStandardMaterial) {
             object.material.emissive?.setScalar(this.intersectedObjectEmissiveVal); // Highlight intersected object
         }
@@ -52,4 +52,4 @@ class ObjectInteractionManager {
         }
     }
 }
-export default ObjectInteractionManager;
+export default Interaction;

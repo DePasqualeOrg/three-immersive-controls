@@ -1,5 +1,5 @@
 import { createOverlay } from './overlays.js';
-import ObjectInteractionManager from './ObjectInteractionManager.js';
+import Interaction from './Interaction.js';
 
 interface ImmersiveUIButtonOptions {
   displayText: string,
@@ -7,7 +7,7 @@ interface ImmersiveUIButtonOptions {
   meshName: string,
   selectable: boolean,
   showActive: boolean,
-  objectInteractionManager: ObjectInteractionManager,
+  interaction: Interaction,
 }
 
 interface ImmersiveUIButton {
@@ -17,7 +17,7 @@ interface ImmersiveUIButton {
   selectable: boolean,
   showActive: boolean,
   created: Promise<void>,
-  objectInteractionManager: ObjectInteractionManager,
+  interaction: Interaction,
   width: number,
   height: number,
   mesh: THREE.Mesh,
@@ -25,7 +25,7 @@ interface ImmersiveUIButton {
 
 class ImmersiveUIButton {
   constructor({
-    displayText, type, meshName, selectable = true, showActive = false, objectInteractionManager,
+    displayText, type, meshName, selectable = true, showActive = false, interaction,
   }: ImmersiveUIButtonOptions) {
     this.displayText = displayText;
     this.type = type;
@@ -33,14 +33,14 @@ class ImmersiveUIButton {
     this.selectable = selectable;
     this.showActive = showActive;
     this.created = this.create();
-    this.objectInteractionManager = objectInteractionManager;
+    this.interaction = interaction;
   }
   async create(): Promise<void> {
     const button = await createOverlay({ text: this.displayText, selectable: this.selectable, showActive: this.showActive });
     button.name = this.meshName;
     button.userData.type = this.type;
     if (this.selectable === true) {
-      this.objectInteractionManager.selectableObjects.push(button);
+      this.interaction.selectableObjects.push(button);
     }
     button.geometry.computeBoundingBox();
     if (button.geometry.boundingBox) {
