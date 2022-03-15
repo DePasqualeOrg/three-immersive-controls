@@ -5,20 +5,32 @@ class Interaction {
         this.intersectedObjects = [];
         this.selectableObjects = [];
         this.intersectedObjectEmissiveVal = 0.3;
-        this.selectedObjectHandlers = {
+        this.intersectionHandlers = {
         // objectType: handlerFunction,
         };
-        this.intersectedObjectHandlers = {
+        this.selectStartHandlers = {
+        // objectType: handlerFunction,
+        };
+        this.selectEndHandlers = {
         // objectType: handlerFunction,
         };
     }
-    handleSelectedObject(object) {
-        console.debug(`Selected ${object.name}`);
-        if (object.userData.type in this.selectedObjectHandlers) {
-            this.selectedObjectHandlers[object.userData.type](object);
+    handleSelectStart(object, controller) {
+        console.debug(`Select start occurred on ${object.name || object.userData.type}`);
+        if (object.userData.type in this.selectStartHandlers) {
+            this.selectStartHandlers[object.userData.type](object, controller);
         }
         else {
-            console.error(`Object of type ${object.userData.type} was selected, but no handler was set for this type.`);
+            console.error(`Select start occurred on object of type ${object.userData.type}, but no handler was set for this type.`);
+        }
+    }
+    handleSelectEnd(object, controller) {
+        console.debug(`Select end occurred on ${object.name || object.userData.type}`);
+        if (object.userData.type in this.selectEndHandlers) {
+            this.selectEndHandlers[object.userData.type](object, controller);
+        }
+        else {
+            console.error(`Select end occurred on object of type ${object.userData.type}, but no handler was set for this type.`);
         }
     }
     cleanIntersected() {
@@ -40,15 +52,15 @@ class Interaction {
             }
         }
     }
-    handleIntersectedObject(object) {
+    handleIntersection(object) {
         this.intersectedObjects.push(object);
         Interaction.handleButtonMaterialMaps(object, true);
         if (object.material instanceof THREE.MeshStandardMaterial) {
             object.material.emissive?.setScalar(this.intersectedObjectEmissiveVal); // Highlight intersected object
         }
         // Optional additional logic that can be set for each object type for custom behavior
-        if (object.userData.type in this.intersectedObjectHandlers) {
-            this.intersectedObjectHandlers[object.userData.type](object);
+        if (object.userData.type in this.intersectionHandlers) {
+            this.intersectionHandlers[object.userData.type](object);
         }
     }
 }

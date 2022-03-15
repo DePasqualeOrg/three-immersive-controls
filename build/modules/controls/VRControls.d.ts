@@ -73,6 +73,7 @@ interface VRControls {
                 previousFrame: undefined | boolean;
                 thisFrame: undefined | boolean;
                 buttonUp: undefined | boolean;
+                buttonDown: undefined | boolean;
             };
         };
     };
@@ -99,3 +100,4 @@ declare class VRControls {
     controllersReady(cb: () => void): void;
 }
 export default VRControls;
+export { Controller };

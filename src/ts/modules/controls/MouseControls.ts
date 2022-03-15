@@ -22,9 +22,16 @@ class MouseControls {
 
     // !! Still need to account for case in which a visible element is behind a non-visible element
     // Object selection with mouse
+    // Select start
+    this.controls.renderer.domElement.addEventListener('mousedown', () => {
+      if (this.controls.interaction.intersectedObjects.length > 0 && this.controls.interaction.intersectedObjects[0].visible === true) {
+        this.controls.interaction.handleSelectStart(this.controls.interaction.intersectedObjects[0]);
+      }
+    });
+    // Select end
     this.controls.renderer.domElement.addEventListener('click', () => {
       if (this.controls.interaction.intersectedObjects.length > 0 && this.controls.interaction.intersectedObjects[0].visible === true) {
-        this.controls.interaction.handleSelectedObject(this.controls.interaction.intersectedObjects[0]);
+        this.controls.interaction.handleSelectEnd(this.controls.interaction.intersectedObjects[0]);
       }
     });
   }
@@ -35,7 +42,7 @@ class MouseControls {
       this.controls.raycaster.setFromCamera(this.mousePosition, this.controls.camera);
       const intersections = this.controls.raycaster.intersectObjects(this.controls.interaction.selectableObjects);
       if (intersections.length > 0 && intersections[0].object.visible === true && intersections[0].object instanceof THREE.Mesh) {
-        this.controls.interaction.handleIntersectedObject(intersections[0].object);
+        this.controls.interaction.handleIntersection(intersections[0].object);
       }
     }
   }

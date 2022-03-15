@@ -50,7 +50,7 @@ interface VRControls {
   controllerGrips: { left: undefined | THREE.Group, right: undefined | THREE.Group },
   buttons: {
     [key in 'left' | 'right']: {
-      [key: string]: { previousFrame: undefined | boolean, thisFrame: undefined | boolean, buttonUp: undefined | boolean },
+      [key: string]: { previousFrame: undefined | boolean, thisFrame: undefined | boolean, buttonUp: undefined | boolean, buttonDown: undefined | boolean },
     }
   },
   firstControllerReady: Promise<void>,
@@ -97,14 +97,14 @@ class VRControls {
 
     this.buttons = {
       right: {
-        a: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined },
-        b: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined },
-        trigger: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined },
+        a: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined, buttonDown: undefined },
+        b: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined, buttonDown: undefined },
+        trigger: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined, buttonDown: undefined },
       },
       left: {
-        a: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined },
-        b: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined },
-        trigger: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined },
+        a: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined, buttonDown: undefined },
+        b: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined, buttonDown: undefined },
+        trigger: { previousFrame: undefined, thisFrame: undefined, buttonUp: undefined, buttonDown: undefined },
       },
     };
 
@@ -144,14 +144,14 @@ class VRControls {
       exitVRButton.created.then(() => {
         this.userButtons.add(exitVRButton.mesh);
       });
-      if (!('exitVRButton' in this.controls.interaction.selectedObjectHandlers)) {
-        this.controls.interaction.selectedObjectHandlers.exitVRButton = this.exitVR.bind(this);
+      if (!('exitVRButton' in this.controls.interaction.selectEndHandlers)) {
+        this.controls.interaction.selectEndHandlers.exitVRButton = this.exitVR.bind(this);
       } else {
         console.error('Attempting to set selection handler for object of type `exitVRButton`, but a handler for this object type has already been set.');
       }
-      if (!('exitVRButton' in this.controls.interaction.intersectedObjectHandlers)) {
+      if (!('exitVRButton' in this.controls.interaction.intersectionHandlers)) {
         // Don't reposition user buttons while they're intersected
-        this.controls.interaction.intersectedObjectHandlers.exitVRButton = this.resetUserButtonRepositionTimer.bind(this);
+        this.controls.interaction.intersectionHandlers.exitVRButton = this.resetUserButtonRepositionTimer.bind(this);
       } else {
         console.error('Attempting to set selection handler for object of type `exitVRButton`, but a handler for this object type has already been set.');
       }
@@ -245,6 +245,11 @@ class VRControls {
             this.buttons[side][buttonName].buttonUp = true;
           } else {
             this.buttons[side][buttonName].buttonUp = false;
+          }
+          if (this.buttons[side][buttonName].previousFrame === false && this.buttons[side][buttonName].thisFrame === true) {
+            this.buttons[side][buttonName].buttonDown = true;
+          } else {
+            this.buttons[side][buttonName].buttonDown = false;
           }
         } else {
           this.buttons[side][buttonName].previousFrame = undefined;
@@ -437,7 +442,7 @@ class VRControls {
         const intersection = intersections[0];
         const object = intersection.object;
         if (object instanceof THREE.Mesh) {
-          this.controls.interaction.handleIntersectedObject(object);
+          this.controls.interaction.handleIntersection(object);
         }
         controllerLine.scale.z = intersection.distance;
         /*
@@ -458,8 +463,13 @@ class VRControls {
         } else if (controller.side === 'left') {
           buttonSide = this.buttons.left;
         }
+        // Select start
+        if ((buttonSide?.a.buttonDown === true || buttonSide?.trigger.buttonDown === true) && object.visible === true) {
+          this.controls.interaction.handleSelectStart(object, controller);
+        }
+        // Select end
         if ((buttonSide?.a.buttonUp === true || buttonSide?.trigger.buttonUp === true) && object.visible === true) {
-          this.controls.interaction.handleSelectedObject(object);
+          this.controls.interaction.handleSelectEnd(object, controller);
         }
       } else {
         controllerLine.scale.z = 5;
@@ -526,3 +536,4 @@ class VRControls {
 }
 
 export default VRControls;
+export { Controller };
