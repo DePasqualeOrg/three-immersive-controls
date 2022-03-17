@@ -28,9 +28,9 @@ class MouseControls {
         // Don't get intersctions from camera when in VR
         if (!this.controls.vrControls?.inVr) {
             this.controls.raycaster.setFromCamera(this.mousePosition, this.controls.camera);
-            const intersections = this.controls.raycaster.intersectObjects(this.controls.interaction.selectableObjects);
-            if (intersections.length > 0 && intersections[0].object.visible === true && intersections[0].object instanceof THREE.Mesh) {
-                this.controls.interaction.handleIntersection(intersections[0].object);
+            this.intersections = this.controls.raycaster.intersectObjects(this.controls.interaction.selectableObjects);
+            if (this.intersections.length > 0 && this.intersections[0].object.visible === true && this.intersections[0].object instanceof THREE.Mesh) {
+                this.controls.interaction.handleIntersection(this.intersections[0].object);
             }
         }
     }
