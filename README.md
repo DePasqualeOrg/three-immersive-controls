@@ -75,14 +75,15 @@ Or try them [here](https://unpkg.com/@depasquale/three-immersive-controls/exampl
 
 ### Known bugs
 
-- In Three.js r130, a bug was introduced that interferes with the XR Camera's local matrix calculation. This affects the position of the "Exit VR" button and the camera's position after exiting immersive mode. A [fix](https://github.com/mrdoob/three.js/pull/22362) has been approved and will hopefully be merged soon.
+- In Three.js r130, a bug was introduced that interferes with the XR Camera's local matrix calculation. This affects the position of the "Exit VR" button and the camera's position after exiting immersive mode. A [fix](https://github.com/mrdoob/three.js/pull/22362) has been approved and will hopefully be merged soon. For now, the examples are using a patched version of Three.js.
 
 ### To do
 
 - Add collision detection with navmeshes
-- Test with variety of VR devices (so far only tested with Oculus Quest 2)
+- Test with a variety of VR devices (so far only tested with Oculus Quest 2)
 - Handle situations when only one VR controller is available
-- Controls for touchscreen devices
+- Add controls for touchscreen devices
+- Better repositioning of "Exit VR" button in scene
 - Possible additional features
   - Teleportation
   - Blinders during rotation and movement
