@@ -1,8 +1,5 @@
 import './rounded-rectangle.js';
 import * as THREE from 'three';
-// External (not bundled)
-// import * as THREE from '../lib/threejs/build/three.module.js';
-// !! Maybe a better solution: https://threejs.org/examples/?q=sprite#webgl_sprites
 // Text wrap: https://stackoverflow.com/a/16599668/9346232
 function getLines(ctx, text, maxWidth) {
     const words = text.split(' ');

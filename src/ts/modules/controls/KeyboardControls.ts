@@ -1,5 +1,3 @@
-/*! Copyright 2022, Anthony DePasquale, anthony@depasquale.org */
-
 import * as THREE from 'three';
 import * as TWEEN from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
 import type ImmersiveControls from '../../ImmersiveControls.js';

@@ -7,11 +7,6 @@ declare global {
   }
 }
 
-// External (not bundled)
-// import * as THREE from '../lib/threejs/build/three.module.js';
-
-// !! Maybe a better solution: https://threejs.org/examples/?q=sprite#webgl_sprites
-
 // Text wrap: https://stackoverflow.com/a/16599668/9346232
 function getLines(ctx: CanvasRenderingContext2D, text: string, maxWidth: number) {
   const words = text.split(' ');

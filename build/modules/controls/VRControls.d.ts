@@ -1,7 +1,3 @@
-/*!
-Three.js Immersive Controls
-Copyright 2022, Anthony DePasquale (anthony@depasquale.org)
-*/
 import * as THREE from 'three';
 import * as WebXR from 'webxr';
 import * as TWEEN from '@tweenjs/tween.js';

@@ -1,8 +1,3 @@
-/*!
-Three.js Immersive Controls
-Copyright 2022, Anthony DePasquale (anthony@depasquale.org)
-*/
-
 import * as THREE from 'three';
 import * as WebXR from 'webxr';
 import * as TWEEN from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
@@ -273,7 +268,7 @@ class VRControls {
     if (this.controls.renderer.xr.isPresenting === true) {
       if (this.firstEnteredVr === true && this.cameraHeightInitialized === false) {
         if (this.cameraHeight !== 0) {
-          this.cameraHeightInitialized = true; // !! Correct? This is set one frame after entering VR
+          this.cameraHeightInitialized = true;
           this.initialCameraHeight = this.cameraHeight;
           console.debug('Camera height initialized after entering VR');
           console.debug(`cameraHeight: ${this.cameraHeight}`);
@@ -297,7 +292,6 @@ class VRControls {
       const leftControllerWorldPosition = new THREE.Vector3();
       const leftControllerWorldRotation = new THREE.Quaternion();
       const leftControllerWorldScale = new THREE.Vector3();
-      // !! Send matrix instead?
       this.controllerGrips.left.matrixWorld.decompose(leftControllerWorldPosition, leftControllerWorldRotation, leftControllerWorldScale); // Saves the controller's position, rotation, and scale in the above objects
       this.leftControllerWorldData = { position: leftControllerWorldPosition, rotation: leftControllerWorldRotation, scale: leftControllerWorldScale };
     } else {
@@ -308,7 +302,6 @@ class VRControls {
       const rightControllerWorldPosition = new THREE.Vector3();
       const rightControllerWorldRotation = new THREE.Quaternion();
       const rightControllerWorldScale = new THREE.Vector3();
-      // !! Send matrix instead?
       this.controllerGrips.right.matrixWorld.decompose(rightControllerWorldPosition, rightControllerWorldRotation, rightControllerWorldScale); // Saves the controller's position, rotation, and scale in the above objects
       this.rightControllerWorldData = { position: rightControllerWorldPosition, rotation: rightControllerWorldRotation, scale: rightControllerWorldScale };
     } else {

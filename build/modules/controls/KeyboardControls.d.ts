@@ -1,4 +1,3 @@
-/*! Copyright 2022, Anthony DePasquale, anthony@depasquale.org */
 import * as TWEEN from '@tweenjs/tween.js';
 import type ImmersiveControls from '../../ImmersiveControls.js';
 interface KeyboardControls {

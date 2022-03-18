@@ -1,4 +1,3 @@
-/*! Copyright 2022, Anthony DePasquale, anthony@depasquale.org */
 import * as THREE from 'three';
 class MouseControls {
     constructor(controls) {
