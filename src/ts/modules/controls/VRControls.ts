@@ -447,10 +447,9 @@ class VRControls {
         controllerLine.scale.z = intersection.distance;
         /*
         GamepadButton {pressed: true, touched: true, value: 1}
-        Oculus Quest 2 controller:
         Trigger: controller.gamepad.buttons[0]
         Squeeze: controller.gamepad.buttons[1]
-        ????: controller.gamepad.buttons[2]
+        Touchpad: controller.gamepad.buttons[2]
         Thumbstick button: controller.gamepad.buttons[3]
         A: controller.gamepad.buttons[4]
         B: controller.gamepad.buttons[5]
