@@ -1,7 +1,7 @@
 {
   "name": "@depasquale/three-immersive-controls",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Immersive (VR) controls for Three.js",
   "author": "Anthony DePasquale (anthony@depasquale.org)",
   "main": "build/three-immersive-controls.js",
@@ -19,8 +19,8 @@
     "examples": "node scripts/webserver.js"
   },
   "dependencies": {
-    "@depasquale/three-immersive-controls": "^0.0.5",
-    "@depasquale/three-stats-mesh": "^0.0.11",
+    "@depasquale/three-immersive-controls": "^0.0.7",
+    "@depasquale/three-stats-mesh": "^0.0.12",
     "@depasquale/three-wizard": "^0.0.12",
     "@tweenjs/tween.js": "^18.6.4",
     "three": "^0.138.3"
