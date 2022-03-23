@@ -1,13 +1,13 @@
-// build/temp/ImmersiveControls.js
+// build/ImmersiveControls.js
 import * as THREE7 from "three";
 import StatsMesh from "@depasquale/three-stats-mesh";
 
-// build/temp/modules/controls/VRControls.js
+// build/modules/controls/VRControls.js
 import * as THREE2 from "three";
 import * as TWEEN from "@tweenjs/tween.js";
 import { XRControllerModelFactory } from "three/examples/jsm/webxr/XRControllerModelFactory.js";
 
-// build/temp/modules/rounded-rectangle.js
+// build/modules/rounded-rectangle.js
 CanvasRenderingContext2D.prototype.roundedRectangle = function(x, y, width, height, rounded) {
   const halfRadians = 2 * Math.PI / 2;
   const quarterRadians = 2 * Math.PI / 4;
@@ -21,7 +21,7 @@ CanvasRenderingContext2D.prototype.roundedRectangle = function(x, y, width, heig
   this.lineTo(x + rounded, y);
 };
 
-// build/temp/modules/overlays.js
+// build/modules/overlays.js
 import * as THREE from "three";
 function getLines(ctx, text, maxWidth) {
   const words = text.split(" ");
@@ -221,7 +221,7 @@ var createOverlay = async ({ text = "", selectable = false, showActive = false, 
   }
 };
 
-// build/temp/modules/ImmersiveButton.js
+// build/modules/ImmersiveButton.js
 var ImmersiveButton = class {
   constructor({ displayText, type, meshName, selectable = true, showActive = false, interaction }) {
     this.displayText = displayText;
@@ -251,7 +251,7 @@ var ImmersiveButton = class {
 };
 var ImmersiveButton_default = ImmersiveButton;
 
-// build/temp/modules/controls/VRControls.js
+// build/modules/controls/VRControls.js
 var xAxis = new THREE2.Vector3(1, 0, 0);
 var yAxis = new THREE2.Vector3(0, 1, 0);
 var VRControls = class {
@@ -631,7 +631,7 @@ var VRControls = class {
 };
 var VRControls_default = VRControls;
 
-// build/temp/modules/controls/KeyboardControls.js
+// build/modules/controls/KeyboardControls.js
 import * as THREE3 from "three";
 import * as TWEEN2 from "@tweenjs/tween.js";
 var inertiaTweenDuration = 350;
@@ -806,7 +806,7 @@ var KeyboardControls = class {
 };
 var KeyboardControls_default = KeyboardControls;
 
-// build/temp/modules/controls/MouseControls.js
+// build/modules/controls/MouseControls.js
 import * as THREE4 from "three";
 var MouseControls = class {
   constructor(controls) {
@@ -839,7 +839,7 @@ var MouseControls = class {
 };
 var MouseControls_default = MouseControls;
 
-// build/temp/modules/Interaction.js
+// build/modules/Interaction.js
 import * as THREE5 from "three";
 var Interaction = class {
   constructor() {
@@ -897,7 +897,7 @@ var Interaction = class {
 };
 var Interaction_default = Interaction;
 
-// build/temp/modules/CameraData.js
+// build/modules/CameraData.js
 import * as THREE6 from "three";
 var CameraData = class {
   constructor(camera) {
@@ -913,7 +913,7 @@ var CameraData = class {
 };
 var CameraData_default = CameraData;
 
-// build/temp/ImmersiveControls.js
+// build/ImmersiveControls.js
 var eyeLevel = 1.6;
 var ThreeImmersiveControls = class {
   constructor(camera, renderer, scene, {
@@ -1013,8 +1013,15 @@ var ThreeImmersiveControls = class {
   }
 };
 var ImmersiveControls_default = ThreeImmersiveControls;
+
+// build/index.js
+var build_default = ImmersiveControls_default;
 export {
-  ImmersiveControls_default as default
+  CameraData_default as CameraData,
+  ImmersiveButton_default as ImmersiveButton,
+  Interaction_default as Interaction,
+  createOverlay,
+  build_default as default
 };
 /*!
 Three.js Immersive Controls
