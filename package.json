@@ -1,7 +1,7 @@
 {
   "name": "@depasquale/three-immersive-controls",
   "type": "module",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Immersive (VR) controls for Three.js",
   "author": "Anthony DePasquale (anthony@depasquale.org)",
   "main": "build/three-immersive-controls.js",
