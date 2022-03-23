@@ -4,7 +4,7 @@
   "version": "0.0.7",
   "description": "Immersive (VR) controls for Three.js",
   "author": "Anthony DePasquale (anthony@depasquale.org)",
-  "main": "build/ImmersiveControls.js",
+  "main": "build/three-immersive-controls.js",
   "files": [
     "README.md",
     "LICENSE.md",

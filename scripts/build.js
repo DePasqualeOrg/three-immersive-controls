@@ -3,6 +3,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
 import { compileSassAndPurgeCss } from '@depasquale/front-end-build-tools';
+import esbuild from 'esbuild';
 
 const thisDir = path.dirname(fileURLToPath(import.meta.url));
 const srcDir = path.join(thisDir, '../src');
@@ -14,7 +15,7 @@ const startTime = Date.now();
 await fs.emptyDir(path.join(buildDir));
 await fs.ensureDir(path.join(buildDir, '/css'));
 
-const tsFinished = new Promise((resolve) => {
+await new Promise((resolve) => {
   const tsProcess = spawn('tsc', [], { stdio: 'inherit', cwd: srcDir });
   tsProcess.on('close', (code) => {
     console.log(`TypeScript compile process exited with code ${code}`);
@@ -22,20 +23,38 @@ const tsFinished = new Promise((resolve) => {
   });
 });
 
+await esbuild.build({
+  entryPoints: [path.join(buildDir, '/temp/ImmersiveControls.js')],
+  bundle: true,
+  format: 'esm',
+  external: [
+    'three',
+    '@tweenjs/tween.js',
+    '@depasquale/three-stats-mesh',
+  ],
+  outfile: path.join(buildDir, '/three-immersive-controls.js'),
+})
+  .then(() => {
+    fs.remove(path.join(buildDir, '/temp'), (err) => {
+      if (err) console.error(err);
+    });
+    console.log('esbuild process complete');
+  })
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+
 // CSS
-await tsFinished;
-const cssFinished = compileSassAndPurgeCss({
+await compileSassAndPurgeCss({
   srcSassPath: path.join(srcDir, 'sass/three-immersive-controls.scss'),
   destCssPath: path.join(buildDir, 'css/three-immersive-controls.css'),
   purgeCssContent: [
-    path.join(buildDir, 'modules/controls/VRControls.js'),
-    path.join(buildDir, 'ImmersiveControls.js'),
-    path.join(buildDir, 'modules/rounded-rectangle.js'), // For some reason, this needs to be included in order for "Enter VR" button to be displayed properly
+    path.join(buildDir, '/three-immersive-controls.js'),
   ],
   cssFilesToPurge: [path.join(buildDir, 'css/three-immersive-controls.css')],
 });
 
-await cssFinished;
 const endTime = Date.now();
 const duration = endTime - startTime;
 console.log(`Build took ${duration} milliseconds`);

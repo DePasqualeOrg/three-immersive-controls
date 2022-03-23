@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*! bulma.io v0.9.3 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
- .input, .button {
+ .button {
   -moz-appearance: none;
   -webkit-appearance: none;
   align-items: center;
@@ -20,7 +20,7 @@
   position: relative;
   vertical-align: top;
 }
- .input:focus, .button:focus, .input:active, .button:active {
+ .button:focus, .button:active {
   outline: none;
 }
 
@@ -32,21 +32,33 @@
   user-select: none;
 }
 
- .level:not(:last-child) {
+ .box:not(:last-child) {
   margin-bottom: 1.5rem;
+}
+
+ .loader {
+  -webkit-animation: spinAround 500ms infinite linear;
+          animation: spinAround 500ms infinite linear;
+  border: 2px solid #dbdbdb;
+  border-radius: 9999px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
 }
 
 /* Bulma Base */
 /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
 html,
-body,
-figure {
+body {
   margin: 0;
   padding: 0;
 }
 
-button,
-input {
+button {
   margin: 0;
 }
 
@@ -72,15 +84,15 @@ html {
           text-size-adjust: 100%;
 }
 
-
-figure {
-  display: block;
+body,
+button {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
-body,
-button,
-input {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+code {
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+  font-family: monospace;
 }
 
 body {
@@ -97,6 +109,14 @@ a {
 }
 a:hover {
   color: #363636;
+}
+
+code {
+  background-color: whitesmoke;
+  color: #da1039;
+  font-size: 0.875em;
+  font-weight: normal;
+  padding: 0.25em 0.5em 0.25em;
 }
 
 @-webkit-keyframes spinAround {
@@ -117,6 +137,21 @@ a:hover {
   }
 }
 /* Bulma Elements */
+.box {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  color: #4a4a4a;
+  display: block;
+  padding: 1.25rem;
+}
+
+a.box:hover, a.box:focus {
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px #485fc7;
+}
+a.box:active {
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2), 0 0 0 1px #485fc7;
+}
 
 .button {
   background-color: white;
@@ -167,26 +202,9 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.container {
-  flex-grow: 1;
-  margin: 0 auto;
+.image {
+  display: block;
   position: relative;
-  width: auto;
-}
-@media screen and (min-width: 1024px) {
-  .container {
-    max-width: 960px;
-  }
-}
-@media screen and (min-width: 1216px) {
-  .container:not(.is-max-desktop) {
-    max-width: 1152px;
-  }
-}
-@media screen and (min-width: 1408px) {
-  .container:not(.is-max-desktop):not(.is-max-widescreen) {
-    max-width: 1344px;
-  }
 }
 
 @-webkit-keyframes moveIndeterminate {
@@ -223,49 +241,8 @@ a:hover {
 }
 
 /* Bulma Form */
- .input {
-  background-color: white;
-  border-color: #dbdbdb;
-  border-radius: 4px;
-  color: #363636;
-}
- .input::-moz-placeholder {
-  color: rgba(54, 54, 54, 0.3);
-}
- .input::-webkit-input-placeholder {
-  color: rgba(54, 54, 54, 0.3);
-}
- .input:-moz-placeholder {
-  color: rgba(54, 54, 54, 0.3);
-}
- .input:-ms-input-placeholder {
-  color: rgba(54, 54, 54, 0.3);
-}
- .input:hover {
-  border-color: #b5b5b5;
-}
- .input:focus, .input:active {
-  border-color: #485fc7;
-  box-shadow: 0 0 0 0.125em rgba(72, 95, 199, 0.25);
-}
-
- .input {
-  box-shadow: inset 0 0.0625em 0.125em rgba(10, 10, 10, 0.05);
-  max-width: 100%;
-  width: 100%;
-}
 
 /* Bulma Components */
-
-.level {
-  align-items: center;
-  justify-content: space-between;
-}
-@media screen and (min-width: 769px), print {
-  .level {
-    display: flex;
-  }
-}
 
 /* Bulma Grid */
 
@@ -291,16 +268,8 @@ button {
   margin: 5px;
 }
 
-a, button, input {
+a, button {
   pointer-events: auto;
-}
-
-#container {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  position: relative;
 }
 
 #buttonsContainer {
