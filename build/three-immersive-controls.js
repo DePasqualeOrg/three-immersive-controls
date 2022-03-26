@@ -23,7 +23,7 @@ CanvasRenderingContext2D.prototype.roundedRectangle = function(x, y, width, heig
 
 // build/modules/overlays.js
 import * as THREE from "three";
-function getLines(ctx, text, maxWidth) {
+var getLines = (ctx, text, maxWidth) => {
   const words = text.split(" ");
   const lines = [];
   let currentLine = words[0];
@@ -39,7 +39,7 @@ function getLines(ctx, text, maxWidth) {
   }
   lines.push(currentLine);
   return lines;
-}
+};
 var pixelsPerMeter = 1024;
 var makeCanvasCtx = (canvas, nominalWidth, nominalHeight) => {
   const scaleFactor = window.devicePixelRatio;

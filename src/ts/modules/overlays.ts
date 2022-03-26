@@ -8,7 +8,7 @@ declare global {
 }
 
 // Text wrap: https://stackoverflow.com/a/16599668/9346232
-function getLines(ctx: CanvasRenderingContext2D, text: string, maxWidth: number) {
+const getLines = (ctx: CanvasRenderingContext2D, text: string, maxWidth: number) => {
   const words = text.split(' ');
   const lines = [];
   let currentLine = words[0];
@@ -25,7 +25,7 @@ function getLines(ctx: CanvasRenderingContext2D, text: string, maxWidth: number)
   }
   lines.push(currentLine);
   return lines;
-}
+};
 
 const pixelsPerMeter = 1024;
 
@@ -160,7 +160,7 @@ interface CreateOverlayOptions {
   textProperties?: TextProperties,
 }
 
-const createOverlay = async ({
+export const createOverlay = async ({
   text = '', selectable = false, showActive = false, overlayWidth = 0.75, fitWidth = true, textProperties = createTextProperties(),
 }: CreateOverlayOptions): Promise<THREE.Mesh> => {
   const finalNominalHeight = getFinalNominalHeight({ text, overlayWidth, textProperties });
@@ -246,5 +246,3 @@ const createOverlay = async ({
     throw new Error('Could not calculate finalNominalHeight');
   }
 };
-
-export { createOverlay, createImage, createTextProperties };

@@ -13,26 +13,6 @@ interface TextProperties {
     margin: number;
     fontColor: string;
 }
-interface CreateImageOptions {
-    text: string;
-    nominalWidth: number;
-    textProperties: TextProperties;
-    finalNominalHeight: number;
-    backgroundColor: undefined | string;
-    fitWidth: boolean;
-}
-interface ImageObject {
-    imageData: string;
-    width: number;
-}
-declare const createTextProperties: ({ fontSize, lineHeightRel, margin, fontColor, font, }?: {
-    fontSize?: number | undefined;
-    lineHeightRel?: number | undefined;
-    margin?: number | undefined;
-    fontColor?: string | undefined;
-    font?: string | undefined;
-}) => TextProperties;
-declare const createImage: ({ text, nominalWidth, textProperties, finalNominalHeight, backgroundColor, fitWidth, }: CreateImageOptions) => ImageObject | undefined;
 interface CreateOverlayOptions {
     text: string;
     selectable?: boolean;
@@ -41,5 +21,5 @@ interface CreateOverlayOptions {
     fitWidth?: boolean;
     textProperties?: TextProperties;
 }
-declare const createOverlay: ({ text, selectable, showActive, overlayWidth, fitWidth, textProperties, }: CreateOverlayOptions) => Promise<THREE.Mesh>;
-export { createOverlay, createImage, createTextProperties };
+export declare const createOverlay: ({ text, selectable, showActive, overlayWidth, fitWidth, textProperties, }: CreateOverlayOptions) => Promise<THREE.Mesh>;
+export {};
