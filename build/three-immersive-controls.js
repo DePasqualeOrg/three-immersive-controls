@@ -1,3 +1,5 @@
+"use strict";
+
 // build/ImmersiveControls.js
 import * as THREE7 from "three";
 import StatsMesh from "@depasquale/three-stats-mesh";
