@@ -1,5 +1,3 @@
-"use strict";
-
 // build/ImmersiveControls.js
 import * as THREE7 from "three";
 import StatsMesh from "@depasquale/three-stats-mesh";
@@ -338,7 +336,7 @@ var VRControls = class {
   }
   enterVR() {
     const sessionInit = { optionalFeatures: ["local-floor", "bounded-floor", "hand-tracking", "layers"] };
-    navigator.xr.requestSession("immersive-vr", sessionInit).then(async (session) => {
+    navigator.xr?.requestSession("immersive-vr", sessionInit).then(async (session) => {
       console.debug("Entered VR");
       await this.controls.renderer.xr.setSession(session);
       session.addEventListener("end", () => {
@@ -954,7 +952,7 @@ var ThreeImmersiveControls = class {
     this.raycaster = new THREE7.Raycaster();
     this.vrSupported = new Promise((resolve) => {
       if ("xr" in navigator) {
-        navigator.xr.isSessionSupported("immersive-vr").then((vrSupported) => {
+        navigator.xr?.isSessionSupported("immersive-vr").then((vrSupported) => {
           if (vrSupported === true) {
             console.debug("VR is supported.");
             resolve(true);

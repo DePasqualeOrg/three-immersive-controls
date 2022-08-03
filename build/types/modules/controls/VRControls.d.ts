@@ -1,5 +1,5 @@
+/// <reference types="webxr" />
 import * as THREE from 'three';
-import * as WebXR from 'webxr';
 import * as TWEEN from '@tweenjs/tween.js';
 import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory.js';
 import type ThreeImmersiveControls from '../../ImmersiveControls.js';
@@ -14,7 +14,7 @@ interface VRControlsOptions {
 }
 interface VRControls {
     controls: ThreeImmersiveControls;
-    currentVrSession: null | WebXR.XRSession;
+    currentVrSession: null | XRSession;
     firstEnteredVr: boolean;
     cameraHeightInitialized: boolean;
     inVr: boolean;

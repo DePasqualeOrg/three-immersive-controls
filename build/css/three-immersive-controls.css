@@ -28,7 +28,6 @@
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -50,8 +49,7 @@
   width: 1em;
 }
 
-/* Bulma Base */
-/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+/* Bulma Base */ /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
 html,
 body {
   margin: 0;
@@ -253,8 +251,7 @@ html, body {
   background-color: #000;
   margin: 0;
   height: 100%;
-  -ms-scroll-chaining: none;
-      overscroll-behavior: none;
+  overscroll-behavior: none;
   touch-action: none;
   overflow: hidden;
 }
@@ -263,7 +260,6 @@ button {
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   margin: 5px;
 }
