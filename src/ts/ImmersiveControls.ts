@@ -4,7 +4,6 @@ Copyright 2022, Anthony DePasquale (anthony@depasquale.org)
 */
 
 import * as THREE from 'three';
-import * as WebXR from 'webxr';
 import StatsMesh from '@depasquale/three-stats-mesh';
 import VRControls from './modules/controls/VRControls.js';
 import KeyboardControls from './modules/controls/KeyboardControls.js';
@@ -123,7 +122,7 @@ class ThreeImmersiveControls {
 
     this.vrSupported = new Promise((resolve) => {
       if ('xr' in navigator) {
-        (navigator as unknown as WebXR.Navigator).xr.isSessionSupported('immersive-vr').then((vrSupported) => {
+        (navigator as unknown as Navigator).xr?.isSessionSupported('immersive-vr').then((vrSupported) => {
           if (vrSupported === true) {
             console.debug('VR is supported.');
             resolve(true);

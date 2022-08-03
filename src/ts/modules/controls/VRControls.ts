@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import * as WebXR from 'webxr';
 import * as TWEEN from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
 import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory.js';
 import ImmersiveButton from '../ImmersiveButton.js';
@@ -21,7 +20,7 @@ interface VRControlsOptions {
 
 interface VRControls {
   controls: ThreeImmersiveControls,
-  currentVrSession: null | WebXR.XRSession,
+  currentVrSession: null | XRSession,
   firstEnteredVr: boolean,
   cameraHeightInitialized: boolean,
   inVr: boolean,
@@ -155,9 +154,9 @@ class VRControls {
 
   enterVR() {
     const sessionInit = { optionalFeatures: ['local-floor', 'bounded-floor', 'hand-tracking', 'layers'] };
-    (navigator as unknown as WebXR.Navigator).xr.requestSession('immersive-vr', sessionInit).then(async (session) => {
+    (navigator as unknown as Navigator).xr?.requestSession('immersive-vr', sessionInit).then(async (session) => {
       console.debug('Entered VR');
-      await this.controls.renderer.xr.setSession(session as unknown as THREE.XRSession);
+      await this.controls.renderer.xr.setSession(session as unknown as XRSession);
       session.addEventListener('end', () => {
         // this.currentVrSession = null;
       });
@@ -484,7 +483,7 @@ class VRControls {
     line.scale.z = 5;
 
     return new Promise<void>((resolve) => {
-      const controller = this.controls.renderer.xr.getController(i) as Controller; // Surface with buttons, thumbstick
+      const controller = this.controls.renderer.xr.getController(i) as unknown as Controller; // Surface with buttons, thumbstick
       controller.addEventListener('connected', (e) => {
         const controllerGrip = this.controls.renderer.xr.getControllerGrip(i); // The part held in the hand
         if (this.showControllerModel === true) {
