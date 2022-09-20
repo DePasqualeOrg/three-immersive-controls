@@ -5,6 +5,10 @@
   "description": "Immersive (VR) controls for Three.js",
   "author": "Anthony DePasquale (anthony@depasquale.org)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DePasqualeOrg/three-immersive-controls"
+  },
   "main": "build/three-immersive-controls.js",
   "types": "build/types/index.d.ts",
   "files": [
