@@ -49,7 +49,7 @@ loader.load(img, (texture) => {
     metalness: 0,
   });
   const floorSize = 100;
-  const floorGeometry = new THREE.PlaneBufferGeometry(floorSize, floorSize);
+  const floorGeometry = new THREE.PlaneGeometry(floorSize, floorSize);
   const floor = new THREE.Mesh(floorGeometry, material);
   floor.rotation.x = -Math.PI / 2;
   floor.position.y = floorY;

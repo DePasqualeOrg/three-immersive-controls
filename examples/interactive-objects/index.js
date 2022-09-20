@@ -18,7 +18,7 @@ renderer.shadowMap.enabled = true;
 scene.background = new THREE.Color(0x00002e);
 
 // Floor
-const floorGeometry = new THREE.PlaneBufferGeometry(4, 4);
+const floorGeometry = new THREE.PlaneGeometry(4, 4);
 const floorMaterial = new THREE.MeshStandardMaterial({
   color: 0xeeeeee,
   roughness: 1.0,
@@ -47,11 +47,11 @@ const objects = new THREE.Group();
 scene.add(objects);
 
 const geometries = [
-  new THREE.BoxBufferGeometry(0.2, 0.2, 0.2),
-  new THREE.ConeBufferGeometry(0.2, 0.2, 64),
-  new THREE.CylinderBufferGeometry(0.2, 0.2, 0.2, 64),
-  new THREE.IcosahedronBufferGeometry(0.2, 8),
-  new THREE.TorusBufferGeometry(0.2, 0.04, 64, 32),
+  new THREE.BoxGeometry(0.2, 0.2, 0.2),
+  new THREE.ConeGeometry(0.2, 0.2, 64),
+  new THREE.CylinderGeometry(0.2, 0.2, 0.2, 64),
+  new THREE.IcosahedronGeometry(0.2, 8),
+  new THREE.TorusGeometry(0.2, 0.04, 64, 32),
 ];
 
 let objectAttachedToMouse;

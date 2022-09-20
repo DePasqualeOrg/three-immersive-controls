@@ -31,7 +31,7 @@ directionalLight.position.set(0, 2, -2);
 scene.add(ambientLight, directionalLight);
 
 // Floor
-const floorGeometry = new THREE.PlaneBufferGeometry(10, 10);
+const floorGeometry = new THREE.PlaneGeometry(10, 10);
 const floorMaterial = new THREE.MeshStandardMaterial({
   color: 0x333333,
   metalness: 0.2,
