@@ -637,7 +637,7 @@ import * as TWEEN2 from "@tweenjs/tween.js";
 var inertiaTweenDuration = 350;
 var xAxis2 = new THREE3.Vector3(1, 0, 0);
 var yAxis2 = new THREE3.Vector3(0, 1, 0);
-var KeyboardControls = class {
+var KeyboardControls = class _KeyboardControls {
   constructor(controls) {
     this.controls = controls;
     this.keysPressed = [];
@@ -675,13 +675,13 @@ var KeyboardControls = class {
       const key = (e.code ? e.code : e.which).toString();
       if (this.hotKeys.includes(key)) {
         if (this.keysPressed.includes(key)) {
-          KeyboardControls.removeItem(this.keysPressed, key);
+          _KeyboardControls.removeItem(this.keysPressed, key);
           if (this.keysToIgnore.includes(this.opposites[key])) {
-            KeyboardControls.removeItem(this.keysToIgnore, this.opposites[key]);
+            _KeyboardControls.removeItem(this.keysToIgnore, this.opposites[key]);
           }
         }
         if (this.keysToIgnore.includes(key)) {
-          KeyboardControls.removeItem(this.keysToIgnore, key);
+          _KeyboardControls.removeItem(this.keysToIgnore, key);
         }
       }
       this.selectActiveKeys();
@@ -841,14 +841,20 @@ var MouseControls_default = MouseControls;
 
 // build/modules/Interaction.js
 import * as THREE5 from "three";
-var Interaction = class {
+var Interaction = class _Interaction {
   constructor() {
     this.intersectedObjects = [];
     this.selectableObjects = [];
     this.intersectedObjectEmissiveVal = 0.3;
-    this.intersectionHandlers = {};
-    this.selectStartHandlers = {};
-    this.selectEndHandlers = {};
+    this.intersectionHandlers = {
+      // objectType: handlerFunction,
+    };
+    this.selectStartHandlers = {
+      // objectType: handlerFunction,
+    };
+    this.selectEndHandlers = {
+      // objectType: handlerFunction,
+    };
   }
   handleSelectStart(object, controller) {
     console.debug(`Select start occurred on ${object.name || object.userData.type}`);
@@ -871,7 +877,7 @@ var Interaction = class {
       const object = this.intersectedObjects.pop();
       if (object instanceof THREE5.Mesh) {
         object.material.emissive?.setScalar(0);
-        Interaction.handleButtonMaterialMaps(object, false);
+        _Interaction.handleButtonMaterialMaps(object, false);
       }
     }
   }
@@ -886,7 +892,7 @@ var Interaction = class {
   }
   handleIntersection(object) {
     this.intersectedObjects.push(object);
-    Interaction.handleButtonMaterialMaps(object, true);
+    _Interaction.handleButtonMaterialMaps(object, true);
     if (object.material instanceof THREE5.MeshStandardMaterial) {
       object.material.emissive?.setScalar(this.intersectedObjectEmissiveVal);
     }
@@ -919,17 +925,21 @@ var ThreeImmersiveControls = class {
   constructor(camera, renderer, scene, {
     initialPosition = new THREE7.Vector3(0, eyeLevel, 4),
     lookAt = new THREE7.Vector3(initialPosition.x, initialPosition.y, initialPosition.z - 1e4),
+    // Controls settings
     floor = 0,
     gravity = true,
     moveSpeed = { vr: 2.5, keyboard: 5 },
     rotateSpeed = 1,
     tumble = false,
+    // Display options
     showControllerModel = true,
     showEnterVRButton = true,
     showExitVRButton = true,
+    // Controls
     vrControls = true,
     keyboardControls = true,
     mouseControls = true,
+    // FPS
     showFps = false
   } = {}) {
     this.camera = camera;
@@ -1024,10 +1034,10 @@ export {
   build_default as default
 };
 /*!
-Three.js Immersive Controls
-Copyright 2022, Anthony DePasquale (anthony@depasquale.org)
-*/
-/*!
 roundedRectangle by Aaron Newell
 https://newfivefour.com/javascript-canvas-rounded-rectangle.html
+*/
+/*!
+Three.js Immersive Controls
+Copyright 2023, Anthony DePasquale
 */

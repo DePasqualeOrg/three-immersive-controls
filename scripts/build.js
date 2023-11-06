@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
 import { compileSassAndPurgeCss } from '@depasquale/front-end-build-tools';
 import esbuild from 'esbuild';
-import glob from 'glob';
+import { glob } from 'glob';
 
 const thisDir = path.dirname(fileURLToPath(import.meta.url));
 const srcDir = path.join(thisDir, '../src');

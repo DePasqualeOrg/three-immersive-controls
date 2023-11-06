@@ -1,7 +1,7 @@
 {
   "name": "@depasquale/three-immersive-controls",
   "type": "module",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Immersive (VR) controls for Three.js",
   "author": "Anthony DePasquale (anthony@depasquale.org)",
   "license": "MIT",
@@ -25,25 +25,25 @@
     "examples": "node scripts/webserver.js"
   },
   "dependencies": {
-    "@depasquale/three-immersive-controls": "^0.0.12",
+    "@depasquale/three-immersive-controls": "^0.0.14",
     "@depasquale/three-stats-mesh": "^0.0.14",
     "@depasquale/three-wizard": "^0.0.13",
-    "@tweenjs/tween.js": "^18.6.4",
-    "three": "^0.144.0"
+    "@tweenjs/tween.js": "^21.0.0",
+    "three": "^0.158.0"
   },
   "devDependencies": {
-    "@depasquale/eslint-config-typescript": "^0.0.3",
+    "@depasquale/eslint-config-typescript": "^0.0.12",
     "@depasquale/front-end-build-tools": "^0.0.2",
-    "@types/three": "^0.144.0",
-    "@typescript-eslint/eslint-plugin": "^5.38.0",
-    "@typescript-eslint/parser": "^5.38.0",
+    "@types/three": "^0.158.1",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
     "bulma": "^0.9.4",
-    "esbuild": "^0.15.8",
-    "eslint": "^8.23.1",
-    "eslint-plugin-import": "^2.26.0",
-    "express": "^4.18.1",
-    "fs-extra": "^10.1.0",
-    "glob": "^8.0.3",
-    "typescript": "^4.8.3"
+    "esbuild": "^0.19.5",
+    "eslint": "^8.53.0",
+    "eslint-plugin-import": "^2.29.0",
+    "express": "^4.18.2",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.10",
+    "typescript": "^5.2.2"
   }
 }
