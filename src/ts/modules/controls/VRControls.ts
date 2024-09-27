@@ -484,7 +484,7 @@ class VRControls {
 
     return new Promise<void>((resolve) => {
       const controller = this.controls.renderer.xr.getController(i) as unknown as Controller; // Surface with buttons, thumbstick
-      controller.addEventListener('connected', (e) => {
+      controller.addEventListener('added', (e) => {
         const controllerGrip = this.controls.renderer.xr.getControllerGrip(i); // The part held in the hand
         if (this.showControllerModel === true) {
           controllerGrip.add(this.controllerModelFactory.createControllerModel(controllerGrip));
@@ -507,13 +507,13 @@ class VRControls {
             console.error('Error assigning controller to right or left hand');
           }
           this.controls.player.add(controllerGrip, controller);
-          controller.gamepad = e.data.gamepad;
+          controller.gamepad = e.target.gamepad;
         } else {
           console.error('No XR session found');
         }
         resolve();
       });
-      controller.addEventListener('disconnected', () => {
+      controller.addEventListener('removed', () => {
         console.debug(`Controller ${i} disconnected`);
         // !! Need to figure out a solution here (see above)
       });
