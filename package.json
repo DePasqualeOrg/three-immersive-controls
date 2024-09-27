@@ -28,7 +28,7 @@
     "@depasquale/three-immersive-controls": "^0.0.15",
     "@depasquale/three-stats-mesh": "^0.0.15",
     "@depasquale/three-wizard": "^0.0.14",
-    "@tweenjs/tween.js": "^25.0.0",
+    "@tweenjs/tween.js": "23.0.0",
     "three": "^0.169.0"
   },
   "devDependencies": {
