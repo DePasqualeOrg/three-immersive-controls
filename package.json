@@ -25,25 +25,25 @@
     "examples": "node scripts/webserver.js"
   },
   "dependencies": {
-    "@depasquale/three-immersive-controls": "^0.0.14",
-    "@depasquale/three-stats-mesh": "^0.0.14",
-    "@depasquale/three-wizard": "^0.0.13",
-    "@tweenjs/tween.js": "^21.0.0",
-    "three": "^0.158.0"
+    "@depasquale/three-immersive-controls": "^0.0.15",
+    "@depasquale/three-stats-mesh": "^0.0.15",
+    "@depasquale/three-wizard": "^0.0.14",
+    "@tweenjs/tween.js": "^25.0.0",
+    "three": "^0.169.0"
   },
   "devDependencies": {
-    "@depasquale/eslint-config-typescript": "^0.0.12",
-    "@depasquale/front-end-build-tools": "^0.0.2",
-    "@types/three": "^0.158.1",
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "@typescript-eslint/parser": "^6.9.1",
-    "bulma": "^0.9.4",
-    "esbuild": "^0.19.5",
-    "eslint": "^8.53.0",
-    "eslint-plugin-import": "^2.29.0",
-    "express": "^4.18.2",
-    "fs-extra": "^11.1.1",
-    "glob": "^10.3.10",
-    "typescript": "^5.2.2"
+    "@depasquale/eslint-config-typescript": "^0.0.15",
+    "@depasquale/front-end-build-tools": "^0.0.3",
+    "@types/three": "^0.169.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "bulma": "^1.0.2",
+    "esbuild": "^0.24.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-import": "^2.30.0",
+    "express": "^4.21.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^11.0.0",
+    "typescript": "^5.6.2"
   }
 }
