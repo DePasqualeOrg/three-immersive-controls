@@ -592,7 +592,7 @@ var VRControls = class {
     line.scale.z = 5;
     return new Promise((resolve) => {
       const controller = this.controls.renderer.xr.getController(i);
-      controller.addEventListener("added", (e) => {
+      controller.addEventListener("connected", (e) => {
         const controllerGrip = this.controls.renderer.xr.getControllerGrip(i);
         if (this.showControllerModel === true) {
           controllerGrip.add(this.controllerModelFactory.createControllerModel(controllerGrip));
@@ -613,13 +613,13 @@ var VRControls = class {
             console.error("Error assigning controller to right or left hand");
           }
           this.controls.player.add(controllerGrip, controller);
-          controller.gamepad = e.target.gamepad;
+          controller.gamepad = e.data.gamepad;
         } else {
           console.error("No XR session found");
         }
         resolve();
       });
-      controller.addEventListener("removed", () => {
+      controller.addEventListener("disconnected", () => {
         console.debug(`Controller ${i} disconnected`);
       });
     });

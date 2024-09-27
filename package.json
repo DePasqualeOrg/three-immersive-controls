@@ -29,12 +29,12 @@
     "@depasquale/three-stats-mesh": "^0.0.15",
     "@depasquale/three-wizard": "^0.0.14",
     "@tweenjs/tween.js": "23.0.0",
-    "three": "^0.169.0"
+    "three": "0.161.0"
   },
   "devDependencies": {
     "@depasquale/eslint-config-typescript": "^0.0.15",
     "@depasquale/front-end-build-tools": "^0.0.3",
-    "@types/three": "^0.169.0",
+    "@types/three": "0.161.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "bulma": "^1.0.2",
