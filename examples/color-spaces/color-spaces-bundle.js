@@ -4,7 +4,7 @@ import TWEEN from "@tweenjs/tween.js";
 
 // ../../modules/alea.js
 function Alea() {
-  return function(args) {
+  return function (args) {
     let s0 = 0;
     let s1 = 0;
     let s2 = 0;
@@ -31,24 +31,24 @@ function Alea() {
       }
     }
     mash = null;
-    const random = function() {
+    const random = function () {
       const t = 2091639 * s0 + c * 23283064365386963e-26;
       s0 = s1;
       s1 = s2;
       return s2 = t - (c = t | 0);
     };
-    random.uint32 = function() {
+    random.uint32 = function () {
       return random() * 4294967296;
     };
-    random.fract53 = function() {
+    random.fract53 = function () {
       return random() + (random() * 2097152 | 0) * 11102230246251565e-32;
     };
     random.version = "Alea 0.9";
     random.args = args;
-    random.exportState = function() {
+    random.exportState = function () {
       return [s0, s1, s2, c];
     };
-    random.importState = function(i) {
+    random.importState = function (i) {
       s0 = +i[0] || 0;
       s1 = +i[1] || 0;
       s2 = +i[2] || 0;
@@ -59,7 +59,7 @@ function Alea() {
 }
 function Mash() {
   let n = 4022871197;
-  const mash = function(data) {
+  const mash = function (data) {
     data = data.toString();
     for (let i = 0; i < data.length; i++) {
       n += data.charCodeAt(i);
