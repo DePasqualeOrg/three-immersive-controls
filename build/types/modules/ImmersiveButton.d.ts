@@ -1,4 +1,5 @@
 import Interaction from './Interaction.js';
+import * as THREE from 'three';
 interface ImmersiveButtonOptions {
     displayText: string;
     type: string;
