@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import * as TWEEN from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
+import { Tween, Easing, update as updateTweenGroup } from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
 import type ImmersiveControls from '../../ImmersiveControls.js';
 
 const inertiaTweenDuration = 350;
@@ -13,8 +13,8 @@ interface KeyboardControls {
   lastFrameRotationWas0: boolean,
   movementInertia: { val: number },
   rotationInertia: { val: number },
-  movementTween?: TWEEN.Tween<{ val: number }>,
-  rotationTween?: TWEEN.Tween<{ val: number }>,
+  movementTween?: Tween<{ val: number }>,
+  rotationTween?: Tween<{ val: number }>,
   veticalRotationThreshold: number,
   xRotation: number,
   yRotation: number,
@@ -134,7 +134,7 @@ class KeyboardControls {
   }
 
   update() {
-    TWEEN.update();
+    updateTweenGroup();
 
     const moveSpeedPerMillisecond = this.controls.moveSpeed.keyboard / 1000;
     const rotateSpeedPerMillisecond = this.controls.rotateSpeed / 1000;
@@ -146,9 +146,9 @@ class KeyboardControls {
 
     if (this.lastFrameMovementWas0 === true && movementKeyActive === true) {
       // Start tween
-      this.movementTween = new TWEEN.Tween(this.movementInertia)
+      this.movementTween = new Tween(this.movementInertia)
         .to({ val: 0 }, inertiaTweenDuration)
-        .easing(TWEEN.Easing.Quadratic.Out)
+        .easing(Easing.Quadratic.Out)
         // .onUpdate(() => {})
         .start();
     }
@@ -163,9 +163,9 @@ class KeyboardControls {
 
     if (this.lastFrameRotationWas0 === true && rotationKeyActive === true) {
       // Start tween
-      this.rotationTween = new TWEEN.Tween(this.rotationInertia)
+      this.rotationTween = new Tween(this.rotationInertia)
         .to({ val: 0 }, inertiaTweenDuration)
-        .easing(TWEEN.Easing.Quadratic.Out)
+        .easing(Easing.Quadratic.Out)
         // .onUpdate(() => {})
         .start();
     }

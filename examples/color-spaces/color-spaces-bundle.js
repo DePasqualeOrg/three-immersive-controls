@@ -1,6 +1,6 @@
 // color-spaces.js
 import * as THREE from "three";
-import TWEEN from "@tweenjs/tween.js";
+import { Tween, update as updateTweenGroup } from "@tweenjs/tween.js";
 
 // ../../modules/alea.js
 function Alea() {
@@ -454,11 +454,11 @@ var ColorSpaces = class {
   }
   transformSpheres() {
     for (let i = 0; i < this.spheres.length; i++) {
-      new TWEEN.Tween(this.spheres[i].material.color).to({ r: this.allColorValues[i].r / 255, g: this.allColorValues[i].g / 255, b: this.allColorValues[i].b / 255 }, this.settings.transformDuration).easing(TWEEN.Easing.Cubic.InOut).start();
-      const tween = new TWEEN.Tween(this.spheres[i].position);
+      new Tween(this.spheres[i].material.color).to({ r: this.allColorValues[i].r / 255, g: this.allColorValues[i].g / 255, b: this.allColorValues[i].b / 255 }, this.settings.transformDuration).easing(Easing.Cubic.InOut).start();
+      const tween = new Tween(this.spheres[i].position);
       for (let j = 0; j < this.colorSpaces.length; j++) {
         if (this.colorSpaces[j].name === this.settings.plotBy) {
-          tween.to(new THREE.Vector3((this.allColorValues[i][this.colorSpaces[j].components[0].name] - this.colorSpaces[j].components[0].min) / (this.colorSpaces[j].components[0].max - this.colorSpaces[j].components[0].min) * (this.settings.width / ((this.settings.spheresPerAxis - 1) / this.settings.spheresPerAxis)) - this.settings.width / 2, (this.allColorValues[i][this.colorSpaces[j].components[1].name] - this.colorSpaces[j].components[1].min) / (this.colorSpaces[j].components[1].max - this.colorSpaces[j].components[1].min) * (this.settings.width / ((this.settings.spheresPerAxis - 1) / this.settings.spheresPerAxis)) - this.settings.width / 2, (this.allColorValues[i][this.colorSpaces[j].components[2].name] - this.colorSpaces[j].components[2].min) / (this.colorSpaces[j].components[2].max - this.colorSpaces[j].components[2].min) * (this.settings.width / ((this.settings.spheresPerAxis - 1) / this.settings.spheresPerAxis)) - this.settings.width / 2), this.settings.transformDuration).easing(TWEEN.Easing.Cubic.InOut).start();
+          tween.to(new THREE.Vector3((this.allColorValues[i][this.colorSpaces[j].components[0].name] - this.colorSpaces[j].components[0].min) / (this.colorSpaces[j].components[0].max - this.colorSpaces[j].components[0].min) * (this.settings.width / ((this.settings.spheresPerAxis - 1) / this.settings.spheresPerAxis)) - this.settings.width / 2, (this.allColorValues[i][this.colorSpaces[j].components[1].name] - this.colorSpaces[j].components[1].min) / (this.colorSpaces[j].components[1].max - this.colorSpaces[j].components[1].min) * (this.settings.width / ((this.settings.spheresPerAxis - 1) / this.settings.spheresPerAxis)) - this.settings.width / 2, (this.allColorValues[i][this.colorSpaces[j].components[2].name] - this.colorSpaces[j].components[2].min) / (this.colorSpaces[j].components[2].max - this.colorSpaces[j].components[2].min) * (this.settings.width / ((this.settings.spheresPerAxis - 1) / this.settings.spheresPerAxis)) - this.settings.width / 2), this.settings.transformDuration).easing(Easing.Cubic.InOut).start();
         }
       }
     }
@@ -496,7 +496,7 @@ var ColorSpaces = class {
     selectNewCombination();
   }
   static update() {
-    TWEEN.update();
+    updateTweenGroup();
   }
 };
 export {

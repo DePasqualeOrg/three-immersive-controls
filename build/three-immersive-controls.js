@@ -4,7 +4,7 @@ import StatsMesh from "@depasquale/three-stats-mesh";
 
 // build/modules/controls/VRControls.js
 import * as THREE2 from "three";
-import * as TWEEN from "@tweenjs/tween.js";
+import { Tween, Easing, update as updateTweenGroup } from "@tweenjs/tween.js";
 import { XRControllerModelFactory } from "three/examples/jsm/webxr/XRControllerModelFactory.js";
 
 // build/modules/rounded-rectangle.js
@@ -390,7 +390,7 @@ var VRControls = class {
     });
   }
   update() {
-    TWEEN.update();
+    updateTweenGroup();
     if (this.inVr === true) {
       if (this.controllers.left) {
         this.handleControllerIntersections(this.controllers.left);
@@ -485,7 +485,7 @@ var VRControls = class {
         thumbstickY *= -1;
       }
       if (this.lastFrameLeftThumbstickWas0 === true && (thumbstickY !== 0 || thumbstickX !== 0)) {
-        this.leftThumbstickTween = new TWEEN.Tween(this.leftThumbstickInertia).to({ val: 0 }, 1e3).easing(TWEEN.Easing.Quadratic.Out).start();
+        this.leftThumbstickTween = new Tween(this.leftThumbstickInertia).to({ val: 0 }, 1e3).easing(Easing.Quadratic.Out).start();
       }
       const inertiaCoefficient = 1 - this.leftThumbstickInertia.val;
       const movementValZ = moveSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * thumbstickY * inertiaCoefficient;
@@ -517,7 +517,7 @@ var VRControls = class {
       thumbstickX *= this.getScale(thumbstickX);
       thumbstickY *= this.getScale(thumbstickY);
       if (this.lastFrameRightThumbstickWas0 && (thumbstickX !== 0 || thumbstickY !== 0)) {
-        this.rightThumbstickTween = new TWEEN.Tween(this.rightThumbstickInertia).to({ val: 0 }, 750).easing(TWEEN.Easing.Quadratic.Out).start();
+        this.rightThumbstickTween = new Tween(this.rightThumbstickInertia).to({ val: 0 }, 750).easing(Easing.Quadratic.Out).start();
       }
       const inertiaCoefficient = 1 - this.rightThumbstickInertia.val;
       if (thumbstickX !== 0 || thumbstickY !== 0 && this.controls.tumble === true) {
@@ -633,7 +633,7 @@ var VRControls_default = VRControls;
 
 // build/modules/controls/KeyboardControls.js
 import * as THREE3 from "three";
-import * as TWEEN2 from "@tweenjs/tween.js";
+import { Tween as Tween2, Easing as Easing2, update as updateTweenGroup2 } from "@tweenjs/tween.js";
 var inertiaTweenDuration = 350;
 var xAxis2 = new THREE3.Vector3(1, 0, 0);
 var yAxis2 = new THREE3.Vector3(0, 1, 0);
@@ -728,7 +728,7 @@ var KeyboardControls = class _KeyboardControls {
     }
   }
   update() {
-    TWEEN2.update();
+    updateTweenGroup2();
     const moveSpeedPerMillisecond = this.controls.moveSpeed.keyboard / 1e3;
     const rotateSpeedPerMillisecond = this.controls.rotateSpeed / 1e3;
     let movementKeyActive = false;
@@ -736,7 +736,7 @@ var KeyboardControls = class _KeyboardControls {
       movementKeyActive = true;
     }
     if (this.lastFrameMovementWas0 === true && movementKeyActive === true) {
-      this.movementTween = new TWEEN2.Tween(this.movementInertia).to({ val: 0 }, inertiaTweenDuration).easing(TWEEN2.Easing.Quadratic.Out).start();
+      this.movementTween = new Tween2(this.movementInertia).to({ val: 0 }, inertiaTweenDuration).easing(Easing2.Quadratic.Out).start();
     }
     const movementInertiaCoefficient = 1 - this.movementInertia.val;
     const movementAmount = moveSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * movementInertiaCoefficient;
@@ -746,7 +746,7 @@ var KeyboardControls = class _KeyboardControls {
       rotationKeyActive = true;
     }
     if (this.lastFrameRotationWas0 === true && rotationKeyActive === true) {
-      this.rotationTween = new TWEEN2.Tween(this.rotationInertia).to({ val: 0 }, inertiaTweenDuration).easing(TWEEN2.Easing.Quadratic.Out).start();
+      this.rotationTween = new Tween2(this.rotationInertia).to({ val: 0 }, inertiaTweenDuration).easing(Easing2.Quadratic.Out).start();
     }
     const rotationInertiaCoefficient = 1 - this.rotationInertia.val;
     const rotationAmount = rotateSpeedPerMillisecond * this.controls.millisecondsSinceLastFrame * rotationInertiaCoefficient;

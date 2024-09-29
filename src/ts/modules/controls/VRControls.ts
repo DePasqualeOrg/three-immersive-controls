@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import * as TWEEN from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
+import { Tween, Easing, update as updateTweenGroup } from '@tweenjs/tween.js'; // https://www.npmjs.com/package/@tweenjs/tween.js, https://github.com/tweenjs/tween.js
 import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory.js';
 import ImmersiveButton from '../ImmersiveButton.js';
 import type ThreeImmersiveControls from '../../ImmersiveControls.js';
@@ -37,8 +37,8 @@ interface VRControls {
   rightControllerWorldData?: { position: THREE.Vector3, rotation: THREE.Quaternion, scale: THREE.Vector3 },
   cameraHeight?: number,
   initialCameraHeight: number,
-  leftThumbstickTween?: TWEEN.Tween<{ val: number }>,
-  rightThumbstickTween?: TWEEN.Tween<{ val: number }>,
+  leftThumbstickTween?: Tween<{ val: number }>,
+  rightThumbstickTween?: Tween<{ val: number }>,
   userButtons: THREE.Group,
   controllers: { [key: string]: undefined | Controller }, // !! Figure out way to index with just 'left' and 'right' in TypeScript
   controllerGrips: { left: undefined | THREE.Group, right: undefined | THREE.Group },
@@ -213,7 +213,7 @@ class VRControls {
   }
 
   update() {
-    TWEEN.update();
+    updateTweenGroup();
 
     // Controller/mouse intersections for object selection
     if (this.inVr === true) {
@@ -328,9 +328,9 @@ class VRControls {
       }
       if (this.lastFrameLeftThumbstickWas0 === true && (thumbstickY !== 0 || thumbstickX !== 0)) {
         // Start tween
-        this.leftThumbstickTween = new TWEEN.Tween(this.leftThumbstickInertia)
+        this.leftThumbstickTween = new Tween(this.leftThumbstickInertia)
           .to({ val: 0 }, 1000)
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(Easing.Quadratic.Out)
           // .onUpdate(() => {})
           .start();
       }
@@ -377,9 +377,9 @@ class VRControls {
       thumbstickY *= this.getScale(thumbstickY);
       if (this.lastFrameRightThumbstickWas0 && (thumbstickX !== 0 || thumbstickY !== 0)) {
         // Start tween
-        this.rightThumbstickTween = new TWEEN.Tween(this.rightThumbstickInertia)
+        this.rightThumbstickTween = new Tween(this.rightThumbstickInertia)
           .to({ val: 0 }, 750)
-          .easing(TWEEN.Easing.Quadratic.Out)
+          .easing(Easing.Quadratic.Out)
           // .onUpdate(() => {})
           .start();
       }

@@ -1,4 +1,4 @@
-import * as TWEEN from '@tweenjs/tween.js';
+import { Tween } from '@tweenjs/tween.js';
 import type ImmersiveControls from '../../ImmersiveControls.js';
 interface KeyboardControls {
     controls: ImmersiveControls;
@@ -13,10 +13,10 @@ interface KeyboardControls {
     rotationInertia: {
         val: number;
     };
-    movementTween?: TWEEN.Tween<{
+    movementTween?: Tween<{
         val: number;
     }>;
-    rotationTween?: TWEEN.Tween<{
+    rotationTween?: Tween<{
         val: number;
     }>;
     veticalRotationThreshold: number;

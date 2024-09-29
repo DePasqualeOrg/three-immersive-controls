@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import * as TWEEN from '@tweenjs/tween.js';
+import { Tween } from '@tweenjs/tween.js';
 import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory.js';
 import type ThreeImmersiveControls from '../../ImmersiveControls.js';
 interface Controller extends THREE.Group {
@@ -48,10 +48,10 @@ interface VRControls {
     };
     cameraHeight?: number;
     initialCameraHeight: number;
-    leftThumbstickTween?: TWEEN.Tween<{
+    leftThumbstickTween?: Tween<{
         val: number;
     }>;
-    rightThumbstickTween?: TWEEN.Tween<{
+    rightThumbstickTween?: Tween<{
         val: number;
     }>;
     userButtons: THREE.Group;
